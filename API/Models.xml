@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Models</name>
+    </assembly>
+    <members>
+        <member name="T:Models.BaseModel">
+            <summary>
+            实体基础类
+            </summary>
+        </member>
+        <member name="P:Models.BaseModel.Id">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:Models.BaseModel.Guid">
+            <summary>
+            Guid
+            </summary>
+        </member>
+        <member name="P:Models.BaseModel.Status">
+            <summary>
+            状态(-1:逻辑删除;0:锁定;1:正常)
+            </summary>
+        </member>
+        <member name="P:Models.BaseModel.SortId">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Models.BaseModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Models.BaseModel.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:Models.Model.Administrator">
+            <summary>
+            管理员类
+            </summary>
+        </member>
+    </members>
+</doc>
