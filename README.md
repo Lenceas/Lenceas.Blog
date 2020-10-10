@@ -1,4 +1,5 @@
-# Lenceas.Blog
+# Lenceas.Blog  
+http://api.lujiesheng.cn/index.html
 个人博客 前后端分离 API接口文档 .NET Core 3.1 API + EF Core + MySql
 
 功能与进度
