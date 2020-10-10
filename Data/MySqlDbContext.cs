@@ -34,7 +34,10 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Administrator>().ToTable("Administrator");
+            //modelBuilder.Entity<Administrator>().ToTable("Administrator");
+            modelBuilder.Entity<Administrator>().HasData(
+                new { Id = 1, Guid = Guid.NewGuid(), UserName = "admin", UserPwd = "admin888", Status = 1, SortId = 100 },
+                new { Id = 2, Guid = Guid.NewGuid(), UserName = "lujiesheng", UserPwd = "admin888", Status = 1, SortId = 100 });
         }
     }
 }
