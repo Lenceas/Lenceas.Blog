@@ -20,6 +20,12 @@ namespace API.Controllers
         private readonly ILogger<AdministratorController> _logger;
         private readonly IAdministratorService _administratorService;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="administratorService"></param>
+
         public AdministratorController(ILogger<AdministratorController> logger, IAdministratorService administratorService)
         {
             _logger = logger;

@@ -3,9 +3,8 @@ using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Helper
 {
     /// <summary>
     /// appsettings.json 操作类

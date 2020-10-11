@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Helper
 {
     /// <summary>
     /// 控制台输出信息类

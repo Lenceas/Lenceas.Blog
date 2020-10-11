@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
@@ -14,31 +15,32 @@ namespace API
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                try
-                {
-                    var context = services.GetRequiredService<MySqlDbContext>();
-                    await DbInitializer.SeedAsync(context);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-            }
-            host.Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            //初始化默认主机Builder
             Host.CreateDefaultBuilder(args)
-            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseUrls("http://*:7575").UseStartup<Startup>();
-                });
+             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+             .ConfigureWebHostDefaults(webBuilder =>
+             {
+                 webBuilder
+                 .UseStartup<Startup>()
+                 .UseUrls("http://*:7575")
+                 .ConfigureLogging((hostingContext, builder) =>
+                 {
+                     //过滤掉系统默认的一些日志
+                     builder.AddFilter("System", LogLevel.Error);
+                     builder.AddFilter("Microsoft", LogLevel.Error);
+
+                     //可配置文件
+                     var path = Path.Combine(Directory.GetCurrentDirectory(), "Log4net.config");
+                     builder.AddLog4Net(path);
+                 });
+             })
+            // 生成承载 web 应用程序的 Microsoft.AspNetCore.Hosting.IWebHost。Build是WebHostBuilder最终的目的，将返回一个构造的WebHost，最终生成宿主。
+             .Build()
+            // 运行 web 应用程序并阻止调用线程, 直到主机关闭。
+            // ※※※※ 有异常，查看 Log 文件夹下的异常日志 ※※※※  
+             .Run();
+        }
     }
 }

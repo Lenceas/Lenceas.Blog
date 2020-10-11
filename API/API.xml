@@ -9,6 +9,13 @@
             管理员
             </summary>
         </member>
+        <member name="M:API.Controllers.AdministratorController.#ctor(Microsoft.Extensions.Logging.ILogger{API.Controllers.AdministratorController},IServices.IAdministratorService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="administratorService"></param>
+        </member>
         <member name="M:API.Controllers.AdministratorController.GetAll">
             <summary>
             查询列表
@@ -41,11 +48,28 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+        <member name="T:API.Filter.GlobalExceptionsFilter">
             <summary>
-            AutoFac
+            全局异常错误日志
             </summary>
-            <param name="builder"></param>
+        </member>
+        <member name="M:API.Filter.GlobalExceptionsFilter.WriteLog(System.String,System.Exception)">
+            <summary>
+            自定义返回格式
+            </summary>
+            <param name="throwMsg"></param>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:API.Filter.JsonErrorResponse.Message">
+            <summary>
+            生产环境的消息
+            </summary>
+        </member>
+        <member name="P:API.Filter.JsonErrorResponse.DevelopmentMessage">
+            <summary>
+            开发环境的消息
+            </summary>
         </member>
     </members>
 </doc>

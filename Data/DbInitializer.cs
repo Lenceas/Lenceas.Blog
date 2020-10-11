@@ -1,4 +1,6 @@
 ﻿using Common;
+using Common.Helper;
+using Microsoft.EntityFrameworkCore;
 using Models.Model;
 using System;
 using System.Collections.Generic;
@@ -10,22 +12,27 @@ namespace Data
 {
     public class DbInitializer
     {
+        /// <summary>
+        /// 异步添加种子数据
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static async Task SeedAsync(MySqlDbContext context)
         {
             try
             {
                 if (AppSettings.app(new string[] { "AppSettings", "SeedDB" }).ObjToBool())
                 {
-                    ConsoleHelper.WriteInfoLine("开始重置数据库...");
-                    await context.Database.EnsureDeletedAsync();
-                    await context.Database.EnsureCreatedAsync();
+                    Console.WriteLine("开始重置数据库...");
+                    context.Database.EnsureDeleted();
+                    context.Database.EnsureCreated();
                     ConsoleHelper.WriteSuccessLine("数据库重置成功!");
                 }
                 if (AppSettings.app(new string[] { "AppSettings", "SeedDBData" }).ObjToBool())
                 {
-                    ConsoleHelper.WriteInfoLine("开始初始化数据...");
+                    Console.WriteLine("开始初始化数据...");
 
-                    if (!context.administrators.Any())
+                    if (!await context.administrators.AnyAsync())
                     {
                         var Administrators = new Administrator[]
                         {
@@ -37,10 +44,10 @@ namespace Data
                             await context.administrators.AddAsync(item);
                         }
                         await context.SaveChangesAsync();
-                        ConsoleHelper.WriteSuccessLine($"表 Administrator 数据初始化成功!");
+                        ConsoleHelper.WriteSuccessLine("表 Administrator 数据初始化成功!");
                     }
 
-                    ConsoleHelper.WriteInfoLine("初始化数据全部完成!");
+                    ConsoleHelper.WriteSuccessLine("初始化数据全部完成!");
                     Console.WriteLine();
                 }
             }

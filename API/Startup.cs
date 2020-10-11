@@ -1,7 +1,11 @@
+using API.AOP;
+using API.Filter;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
-using Common;
+using Common.Helper;
+using Common.LogHelper;
 using Data;
+using Extensions.ServiceExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,12 +21,14 @@ namespace API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Env { get; }
         public string ApiName { get; set; } = "Lenceas.Blog";
         public string BasePath = AppContext.BaseDirectory;
 
@@ -31,10 +37,18 @@ namespace API
             services.AddSingleton(new AppSettings(Configuration));
             services.AddDbContext<MySqlDbContext>();
 
-            //弃用.netcore原生注入方式,采用AutoFac
-            //services.AddScoped<IAdministratorService, AdministratorService>();
+            services.AddSingleton(new LogLock(Env.ContentRootPath));
 
-            services.AddControllers().AddNewtonsoftJson(options =>
+            services.AddDbSetup();
+            services.AddAppConfigSetup();
+
+            services.AddControllers(o =>
+            {
+                // 全局异常过滤
+                o.Filters.Add(typeof(GlobalExceptionsFilter));
+            })
+                //全局配置Json序列化处理
+                .AddNewtonsoftJson(options =>
             {
                 //忽略循环引用
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -60,28 +74,13 @@ namespace API
                 var xmlModelPath = Path.Combine(BasePath, "Models.xml");
                 c.IncludeXmlComments(xmlModelPath);
             });
+
         }
 
-        /// <summary>
-        /// AutoFac
-        /// </summary>
-        /// <param name="builder"></param>
+        // 注意在Program.CreateHostBuilder，添加Autofac服务工厂
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            //直接注册某一个类和接口
-            //左边的是实现类，右边的As是接口
-            //builder.RegisterType<AdministratorService>().As<IAdministratorService>();
-
-
-            //注册要通过反射创建的组件
-            var servicesDllFile = Path.Combine(BasePath, "Services.dll");
-            var assemblysServices = Assembly.LoadFrom(servicesDllFile);
-
-            builder.RegisterAssemblyTypes(assemblysServices)
-                      .AsImplementedInterfaces()
-                      .InstancePerLifetimeScope()
-                      .EnableInterfaceInterceptors();
-
+            builder.RegisterModule(new AutofacModuleRegister());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
