@@ -41,5 +41,11 @@
             </summary>
             <param name="id"></param>
         </member>
+        <member name="M:API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            AutoFac
+            </summary>
+            <param name="builder"></param>
+        </member>
     </members>
 </doc>

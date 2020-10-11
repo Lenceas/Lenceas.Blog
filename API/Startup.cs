@@ -1,24 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extras.DynamicProxy;
 using Common;
 using Data;
-using IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Services;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace API
 {
@@ -38,7 +31,8 @@ namespace API
             services.AddSingleton(new AppSettings(Configuration));
             services.AddDbContext<MySqlDbContext>();
 
-            services.AddScoped<IAdministratorService, AdministratorService>();
+            //弃用.netcore原生注入方式,采用AutoFac
+            //services.AddScoped<IAdministratorService, AdministratorService>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
@@ -66,6 +60,28 @@ namespace API
                 var xmlModelPath = Path.Combine(BasePath, "Models.xml");
                 c.IncludeXmlComments(xmlModelPath);
             });
+        }
+
+        /// <summary>
+        /// AutoFac
+        /// </summary>
+        /// <param name="builder"></param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            //直接注册某一个类和接口
+            //左边的是实现类，右边的As是接口
+            //builder.RegisterType<AdministratorService>().As<IAdministratorService>();
+
+
+            //注册要通过反射创建的组件
+            var servicesDllFile = Path.Combine(BasePath, "Services.dll");
+            var assemblysServices = Assembly.LoadFrom(servicesDllFile);
+
+            builder.RegisterAssemblyTypes(assemblysServices)
+                      .AsImplementedInterfaces()
+                      .InstancePerLifetimeScope()
+                      .EnableInterfaceInterceptors();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
