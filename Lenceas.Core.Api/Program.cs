@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Lenceas.Core.Common;
 using Lenceas.Core.Extensions;
 using Lenceas.Core.Model;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,6 +11,12 @@ using System.IdentityModel.Tokens.Jwt;
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
+    // 应用程序名称
+    ApplicationName = typeof(Program).Assembly.FullName,
+    // ContentRoot目录
+    //ContentRootPath = Directory.GetCurrentDirectory(),
+    // 环境变量
+    //EnvironmentName = Environments.Development
     // Look for static files in webroot
     //WebRootPath = "webroot"
 });
@@ -17,10 +24,11 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 // AutoFac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacModuleRegister()));
-
 builder.WebHost.UseUrls("http://*:8079");
 
 #region Add services to the container.(向容器添加服务)
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(new AppSettings(builder.Configuration));
 // 确保从认证中心返回的ClaimType不被更改，不使用Map映射
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -53,7 +61,6 @@ builder.Services.AddControllers()
 #endregion
 
 var app = builder.Build();
-MySqlContext mySqlContext = app.Services.GetRequiredService<MySqlContext>();
 
 #region Configure the HTTP request pipeline.(配置 HTTP 请求管道)
 if (app.Environment.IsDevelopment())
@@ -89,5 +96,8 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 // 生成种子数据
-app.UseSeedDataMildd(mySqlContext, builder.Environment.WebRootPath);
+app.UseSeedDataMildd(new MySqlContext(new DbContextOptionsBuilder<MySqlContext>().Options), builder.Environment.WebRootPath);
+
+app.MapControllers();
+app.Run();
 #endregion
