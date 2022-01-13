@@ -4,5 +4,474 @@
         <name>Lenceas.Core.Model</name>
     </assembly>
     <members>
+        <member name="T:Lenceas.Core.Model.ApiResult`1">
+            <summary>
+            Api通用返回信息类
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult`1.status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult`1.msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult`1.data">
+            <summary>
+            响应数据
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult.status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult.msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult.data">
+            <summary>
+            响应数据
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.AuthModel.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.AuthModel.UserName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.AuthModel.RoleIDs">
+            <summary>
+            用户角色ID集合
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.BaseEntity">
+            <summary>
+            基础Model
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEntity.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEntity.CDate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEntity.MDate">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEntity.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEntity.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.EnumPermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="F:Lenceas.Core.Model.EnumPermissionType.所有">
+            <summary>
+            所有
+            </summary>
+        </member>
+        <member name="F:Lenceas.Core.Model.EnumPermissionType.增加">
+            <summary>
+            增加
+            </summary>
+        </member>
+        <member name="F:Lenceas.Core.Model.EnumPermissionType.删除">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="F:Lenceas.Core.Model.EnumPermissionType.修改">
+            <summary>
+            修改
+            </summary>
+        </member>
+        <member name="F:Lenceas.Core.Model.EnumPermissionType.查看">
+            <summary>
+            查看
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.Menu">
+            <summary>
+            菜单表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.Menu.MenuPID">
+            <summary>
+            父菜单ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.Menu.MenuName">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.Menu.MenuUrl">
+            <summary>
+            菜单路由
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.Menu.MenuIcon">
+            <summary>
+            菜单Icon
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.Role">
+            <summary>
+            角色表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.Role.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.RoleMenu">
+            <summary>
+            角色菜单表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.RoleMenu.RoleID">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.RoleMenu.MenuID">
+            <summary>
+            菜单ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.RoleMenu.PermissionType">
+            <summary>
+            权限类型 ps:根据枚举EnumPermissionType拼接字符串，用英文逗号","隔开
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.Test">
+            <summary>
+            测试表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.Test.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.User">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.User.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.User.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.User.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.UserRole">
+            <summary>
+            用户角色表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserRole.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserRole.RoleID">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.PageDataSet`1">
+            <summary>
+            通用分页数据类（默认每页10条记录）
+            </summary>
+            <typeparam name="T">分页数据的实体类型</typeparam>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.PageIndex">
+            <summary>
+            当前页数(从1计数）
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.PageSize">
+            <summary>
+            分页大小
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.TotalRecords">
+            <summary>
+            总记录条数
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.HasPreviousPage">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.HasNextPage">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.PageDataSet`1.ViewModelList">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.Model.DBSeed.SeedAsyncByEFCore(Lenceas.Core.Model.MySqlContext,System.String)">
+            <summary>
+            异步添加种子数据 EF Core
+            </summary>
+            <param name="mySqlContext"></param>
+            <param name="WebRootPath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lenceas.Core.Model.BaseEditWebModel">
+            <summary>
+            基础 EditWebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEditWebModel.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEditWebModel.CDate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEditWebModel.MDate">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEditWebModel.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseEditWebModel.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.BaseWebModel">
+            <summary>
+            基础 WebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseWebModel.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseWebModel.CDate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseWebModel.MDate">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseWebModel.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BaseWebModel.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.expires_in">
+            <summary>
+            过期时间 单位:秒 默认15分钟
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.token_type">
+            <summary>
+            Token类型
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.MenuEditWebModel">
+            <summary>
+            菜单 EditWebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuEditWebModel.MenuPID">
+            <summary>
+            父菜单ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuEditWebModel.MenuName">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuEditWebModel.MenuUrl">
+            <summary>
+            菜单路由
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuEditWebModel.MenuIcon">
+            <summary>
+            菜单Icon
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.MenuTreeWebModel">
+            <summary>
+            菜单结构树 WebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuTreeWebModel.MenuPID">
+            <summary>
+            父菜单ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuTreeWebModel.MenuName">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuTreeWebModel.MenuUrl">
+            <summary>
+            菜单路由
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuTreeWebModel.MenuIcon">
+            <summary>
+            菜单Icon
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuTreeWebModel.SubMenuList">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.MenuWebModel">
+            <summary>
+            菜单 WebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuWebModel.MenuPID">
+            <summary>
+            父菜单ID
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuWebModel.MenuName">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuWebModel.MenuUrl">
+            <summary>
+            菜单路由
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.MenuWebModel.MenuIcon">
+            <summary>
+            菜单Icon
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.TestEditWebModel">
+            <summary>
+            测试 EditWebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.TestEditWebModel.Name">
+            <summary>
+            名称 
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.TestWebModel">
+            <summary>
+            测试 WebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.TestWebModel.Name">
+            <summary>
+            名称 
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.UserEditWebModel">
+            <summary>
+            用户 EditWebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserEditWebModel.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserEditWebModel.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserEditWebModel.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.UserWebModel">
+            <summary>
+            用户 WebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserWebModel.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.UserWebModel.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
     </members>
 </doc>
