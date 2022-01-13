@@ -87,21 +87,21 @@ namespace Lenceas.Core.Extensions
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        /// <param name="expireMinutes">过期时间 单位/分钟,默认1分钟</param>
+        /// <param name="expireSeconds">过期时间 单位/秒,默认1分钟</param>
         /// <returns></returns>
-        public void SetValue(string key, object value, int expireMinutes = 1)
+        public void SetValue(string key, object value, int expireSeconds = 60)
         {
             if (value != null)
             {
                 if (value is string cacheValue)
                 {
                     // 字符串无需序列化
-                    _database.StringSet(key, cacheValue, TimeSpan.FromMinutes(expireMinutes));
+                    _database.StringSet(key, cacheValue, TimeSpan.FromSeconds(expireSeconds));
                 }
                 else
                 {
                     //序列化，将object值生成RedisValue
-                    _database.StringSet(key, SerializeHelper.Serialize(value), TimeSpan.FromMinutes(expireMinutes));
+                    _database.StringSet(key, SerializeHelper.Serialize(value), TimeSpan.FromSeconds(expireSeconds));
                 }
             }
         }
@@ -111,21 +111,21 @@ namespace Lenceas.Core.Extensions
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        /// <param name="expireMinutes">过期时间 单位/分钟,默认1分钟</param>
+        /// <param name="expireSeconds">过期时间 单位/秒,默认1分钟</param>
         /// <returns></returns>
-        public async Task SetValueAsync(string key, object value, int expireMinutes = 1)
+        public async Task SetValueAsync(string key, object value, int expireSeconds = 60)
         {
             if (value != null)
             {
                 if (value is string cacheValue)
                 {
                     // 字符串无需序列化
-                    await _database.StringSetAsync(key, cacheValue, TimeSpan.FromMinutes(expireMinutes));
+                    await _database.StringSetAsync(key, cacheValue, TimeSpan.FromSeconds(expireSeconds));
                 }
                 else
                 {
                     //序列化，将object值生成RedisValue
-                    await _database.StringSetAsync(key, SerializeHelper.Serialize(value), TimeSpan.FromMinutes(expireMinutes));
+                    await _database.StringSetAsync(key, SerializeHelper.Serialize(value), TimeSpan.FromSeconds(expireSeconds));
                 }
             }
         }

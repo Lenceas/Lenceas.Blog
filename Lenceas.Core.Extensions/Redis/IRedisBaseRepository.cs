@@ -45,18 +45,18 @@ namespace Lenceas.Core.Extensions
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        /// <param name="expireMinutes">过期时间 单位/分钟,默认1分钟</param>
+        /// <param name="expireSeconds">过期时间 单位/秒,默认1分钟</param>
         /// <returns></returns>
-        void SetValue(string key, object value, int expireMinutes = 1);
+        void SetValue(string key, object value, int expireSeconds = 60);
 
         /// <summary>
         /// 设置缓存值
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        /// <param name="expireMinutes">过期时间 单位/分钟,默认1分钟</param>
+        /// <param name="expireMinutes">过期时间 单位/秒,默认1分钟</param>
         /// <returns></returns>
-        Task SetValueAsync(string key, object value, int expireMinutes = 1);
+        Task SetValueAsync(string key, object value, int expireSeconds = 60);
 
         /// <summary>
         /// 判断是否存在
