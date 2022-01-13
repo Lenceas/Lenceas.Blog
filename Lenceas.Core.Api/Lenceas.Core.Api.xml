@@ -4,5 +4,230 @@
         <name>Lenceas.Core.Api</name>
     </assembly>
     <members>
+        <member name="T:Lenceas.Core.Controllers.AuthController">
+            <summary>
+            权限相关接口
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.AuthController.Login(System.String,System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="name">账号</param>
+            <param name="pwd">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.AuthController.Register(System.String,System.String)">
+            <summary>
+            注册
+            </summary>
+            <param name="name">账号</param>
+            <param name="pwd">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.AuthController.RefreshToken(System.String)">
+            <summary>
+            请求刷新Token（以旧换新），不安全即将遗弃，新方法开发中:通过redis中间层来控制，这样还可以实现单点登录，或者退出登录，取消token权限的问题
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lenceas.Core.Controllers.MenuController">
+            <summary>
+            菜单接口
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.GetMenuTree">
+            <summary>
+            获取菜单结构树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.GetPage(System.Int32,System.Int32)">
+            <summary>
+            获取菜单分页
+            </summary>
+            <param name="pageIndex">当前页数</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.GetList">
+            <summary>
+            获取菜单列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.GetById(System.Int32)">
+            <summary>
+            获取菜单详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.Add(Lenceas.Core.Model.MenuEditWebModel)">
+            <summary>
+            添加菜单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.Update(System.Int32,Lenceas.Core.Model.MenuEditWebModel)">
+            <summary>
+            更新菜单
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.MenuController.Delete(System.Int32)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lenceas.Core.Controllers.TestController">
+            <summary>
+            测试接口
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.GetPage(System.Int32,System.Int32)">
+            <summary>
+            获取测试信息分页
+            </summary>
+            <param name="pageIndex">当前页数</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.GetList">
+            <summary>
+            获取测试信息列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.GetById(System.Int32)">
+            <summary>
+            获取测试信息详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.Add(Lenceas.Core.Model.TestEditWebModel)">
+            <summary>
+            添加测试信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.Update(System.Int32,Lenceas.Core.Model.TestEditWebModel)">
+            <summary>
+            更新测试信息
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.Delete(System.Int32)">
+            <summary>
+            删除测试信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.GetMiniProfilerHtml">
+            <summary>
+            获取 MiniProfiler Html
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.TestMemoryCache">
+            <summary>
+            测试-MemoryCache
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.TestDistributedCache">
+            <summary>
+            测试-DistributedCache
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.TestController.TestRedis">
+            <summary>
+            测试-Redis
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lenceas.Core.Controllers.UserController">
+            <summary>
+            用户接口
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.UserController.GetPage(System.Int32,System.Int32)">
+            <summary>
+            获取用户分页
+            </summary>
+            <param name="pageIndex">当前页数</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.UserController.GetList">
+            <summary>
+            获取用户列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.UserController.GetById(System.Int32)">
+            <summary>
+            获取用户详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.UserController.Add(Lenceas.Core.Model.UserEditWebModel)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.UserController.Update(System.Int32,Lenceas.Core.Model.UserEditWebModel)">
+            <summary>
+            更新用户
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lenceas.Core.CustomRouteAttribute">
+            <summary>
+            自定义路由 /api/{version}/[controler]/[action]
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.CustomRouteAttribute.GroupName">
+            <summary>
+            分组名称,是来实现接口 IApiDescriptionGroupNameProvider
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.CustomRouteAttribute.#ctor(System.String)">
+            <summary>
+            自定义路由构造函数，继承基类路由
+            </summary>
+            <param name="actionName"></param>
+        </member>
+        <member name="M:Lenceas.Core.CustomRouteAttribute.#ctor(Lenceas.Core.Extensions.CustomApiVersion.ApiVersions,System.String)">
+            <summary>
+            自定义版本+路由构造函数，继承基类路由
+            </summary>
+            <param name="actionName"></param>
+            <param name="version"></param>
+        </member>
     </members>
 </doc>

@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "UserName": "system",
+    "Password": "7FEF6171469E80D32C0559F88B377245",
+    "Email": "2923280915@qq.com",
+    "CDate": "\/Date(1604674711000+0800)\/",
+    "MDate": "\/Date(1604674711000+0800)\/",
+    "Sort": 1,
+    "Remark": ""
+  },
+  {
+    "Id": 2,
+    "UserName": "admin",
+    "Password": "7FEF6171469E80D32C0559F88B377245",
+    "Email": "2923280915@qq.com",
+    "CDate": "\/Date(1604674711000+0800)\/",
+    "MDate": "\/Date(1604674711000+0800)\/",
+    "Sort": 2,
+    "Remark": ""
+  }
+]

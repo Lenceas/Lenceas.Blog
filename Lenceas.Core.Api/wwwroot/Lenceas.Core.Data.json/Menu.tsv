@@ -1,0 +1,35 @@
+[
+  {
+    "Id": 1,
+    "MenuPID": 0,
+    "MenuName": "系统面板",
+    "MenuUrl": "/admin",
+    "MenuIcon": "el-icon-s-home",
+    "CDate": "\/Date(1604674711000+0800)\/",
+    "MDate": "\/Date(1604674711000+0800)\/",
+    "Sort": 1,
+    "Remark": ""
+  },
+  {
+    "Id": 2,
+    "MenuPID": 0,
+    "MenuName": "用户中心",
+    "MenuUrl": "/admin/user",
+    "MenuIcon": "el-icon-user",
+    "CDate": "\/Date(1604674711000+0800)\/",
+    "MDate": "\/Date(1604674711000+0800)\/",
+    "Sort": 2,
+    "Remark": ""
+  },
+  {
+    "Id": 3,
+    "MenuPID": 0,
+    "MenuName": "系统设置",
+    "MenuUrl": "/admin/setting",
+    "MenuIcon": "el-icon-setting",
+    "CDate": "\/Date(1604674711000+0800)\/",
+    "MDate": "\/Date(1604674711000+0800)\/",
+    "Sort": 3,
+    "Remark": ""
+  }
+]
