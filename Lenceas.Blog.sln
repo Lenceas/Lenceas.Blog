@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.Api", "Lenceas.Core.Api\Lenceas.Core.Api.csproj", "{0FB58B40-613B-44B2-9178-6D06D1A9643E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.Common", "Lenceas.Core.Common\Lenceas.Core.Common.csproj", "{8A57B7E1-F97C-4E46-A413-1C50807731E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.Extensions", "Lenceas.Core.Extensions\Lenceas.Core.Extensions.csproj", "{F4E5019E-6B32-4B48-8636-2B8CAB53C359}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.IServices", "Lenceas.Core.IServices\Lenceas.Core.IServices.csproj", "{D39401E1-63F1-4E55-85B3-F93368FF8700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.Model", "Lenceas.Core.Model\Lenceas.Core.Model.csproj", "{7127C1E5-DD11-4E26-8A53-33D1DE5ADF65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.Repository", "Lenceas.Core.Repository\Lenceas.Core.Repository.csproj", "{23322243-0D83-47E6-844E-70406A6FD74A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lenceas.Core.Services", "Lenceas.Core.Services\Lenceas.Core.Services.csproj", "{EC8E6B03-374A-4A77-A3E0-EA88BE6C79FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FB58B40-613B-44B2-9178-6D06D1A9643E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB58B40-613B-44B2-9178-6D06D1A9643E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB58B40-613B-44B2-9178-6D06D1A9643E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB58B40-613B-44B2-9178-6D06D1A9643E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A57B7E1-F97C-4E46-A413-1C50807731E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A57B7E1-F97C-4E46-A413-1C50807731E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A57B7E1-F97C-4E46-A413-1C50807731E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A57B7E1-F97C-4E46-A413-1C50807731E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E5019E-6B32-4B48-8636-2B8CAB53C359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E5019E-6B32-4B48-8636-2B8CAB53C359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E5019E-6B32-4B48-8636-2B8CAB53C359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E5019E-6B32-4B48-8636-2B8CAB53C359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D39401E1-63F1-4E55-85B3-F93368FF8700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D39401E1-63F1-4E55-85B3-F93368FF8700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D39401E1-63F1-4E55-85B3-F93368FF8700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D39401E1-63F1-4E55-85B3-F93368FF8700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7127C1E5-DD11-4E26-8A53-33D1DE5ADF65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7127C1E5-DD11-4E26-8A53-33D1DE5ADF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7127C1E5-DD11-4E26-8A53-33D1DE5ADF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7127C1E5-DD11-4E26-8A53-33D1DE5ADF65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23322243-0D83-47E6-844E-70406A6FD74A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23322243-0D83-47E6-844E-70406A6FD74A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23322243-0D83-47E6-844E-70406A6FD74A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23322243-0D83-47E6-844E-70406A6FD74A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8E6B03-374A-4A77-A3E0-EA88BE6C79FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8E6B03-374A-4A77-A3E0-EA88BE6C79FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8E6B03-374A-4A77-A3E0-EA88BE6C79FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8E6B03-374A-4A77-A3E0-EA88BE6C79FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5667839-1835-4756-AD0E-E6485FEE8C4C}
+	EndGlobalSection
+EndGlobal
