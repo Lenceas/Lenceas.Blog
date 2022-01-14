@@ -43,6 +43,6 @@ namespace Lenceas.Core.Model
         /// </summary>
         [Column(TypeName = "varchar(50)")]
         [Description("备注")]
-        public string Remark { get; set; }
+        public string? Remark { get; set; }
     }
 }

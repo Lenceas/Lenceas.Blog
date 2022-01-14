@@ -13,6 +13,9 @@ namespace Lenceas.Core.Model
         #region 构造函数
         public UserRole()
         {
+            CDate = DateTime.Now;
+            MDate = DateTime.Now;
+            Remark = string.Empty;
         }
         #endregion
 

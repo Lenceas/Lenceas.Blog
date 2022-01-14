@@ -56,7 +56,7 @@ namespace Lenceas.Core.Services
                     CDate = p.CDate,
                     MDate = p.MDate,
                     Sort = p.Sort,
-                    Remark = p.Remark,
+                    Remark = p.Remark ?? string.Empty,
                     MenuPID = p.MenuPID,
                     MenuName = p.MenuName,
                     MenuUrl = p.MenuUrl,

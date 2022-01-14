@@ -23,13 +23,5 @@ namespace Lenceas.Core.Model
         [Description("菜单ID")]
         [Required]
         public int MenuID { get; set; }
-
-        /// <summary>
-        /// 权限类型 ps:根据枚举EnumPermissionType拼接字符串，用英文逗号","隔开
-        /// </summary>
-        [Column(TypeName = "varchar(50)")]
-        [Description("权限类型")]
-        [Required]
-        public string PermissionType { get; set; }
     }
 }

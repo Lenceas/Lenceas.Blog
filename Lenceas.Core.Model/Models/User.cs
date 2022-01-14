@@ -15,15 +15,18 @@ namespace Lenceas.Core.Model
         {
             CDate = DateTime.Now;
             MDate = DateTime.Now;
+            Email = string.Empty;
+            Remark = string.Empty;
         }
 
         public User(string account, string md5pwd)
         {
             UserName = account;
             Password = md5pwd;
-            Email = string.Empty;
             CDate = DateTime.Now;
             MDate = DateTime.Now;
+            Email = string.Empty;
+            Remark = string.Empty;
         }
         #endregion
 
@@ -48,6 +51,6 @@ namespace Lenceas.Core.Model
         /// </summary>
         [Column(TypeName = "varchar(50)")]
         [Description("邮箱")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }

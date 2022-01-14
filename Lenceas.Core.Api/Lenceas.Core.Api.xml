@@ -39,7 +39,7 @@
         </member>
         <member name="M:Lenceas.Core.Controllers.MenuController.GetMenuTree">
             <summary>
-            获取菜单结构树
+            获取有权限的菜单结构树
             </summary>
             <returns></returns>
         </member>

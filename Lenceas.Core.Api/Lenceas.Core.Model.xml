@@ -169,11 +169,6 @@
             菜单ID
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.RoleMenu.PermissionType">
-            <summary>
-            权限类型 ps:根据枚举EnumPermissionType拼接字符串，用英文逗号","隔开
-            </summary>
-        </member>
         <member name="T:Lenceas.Core.Model.Test">
             <summary>
             测试表
