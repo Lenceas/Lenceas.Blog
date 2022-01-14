@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Lenceas.Core.Model
 {
+    /// <summary>
+    /// 用户身份缓存对象
+    /// </summary>
     [Serializable]
     public class AuthModel
     {

@@ -39,6 +39,11 @@
             响应数据
             </summary>
         </member>
+        <member name="T:Lenceas.Core.Model.AuthModel">
+            <summary>
+            用户身份缓存对象
+            </summary>
+        </member>
         <member name="P:Lenceas.Core.Model.AuthModel.UserID">
             <summary>
             用户ID

@@ -57,7 +57,7 @@ namespace Lenceas.Core.Repository
 
         public async Task<List<T>> GetByIds(List<int> ids)
         {
-            return await _dbSet.AsNoTracking().WhereBulkContains(ids).OrderBy(_ => _.Sort).ToListAsync();
+            return await _dbSet.Where(_ => ids.Contains(_.Id)).OrderBy(_ => _.Sort).ToListAsync();
         }
 
         public async Task<T> GetEntity(Expression<Func<T, bool>> whereLambda)
@@ -127,7 +127,7 @@ namespace Lenceas.Core.Repository
         {
             await _dbSet.BulkDeleteAsync(entities);
             await unitOfWork.SaveChangesAsync();
-            var newEntities = await this.GetByIds(entities.Select(t => t.Id).ToList());
+            var newEntities = await this.GetByIds(entities.Select(t => t.Id).Distinct().ToList());
             return newEntities.Count == 0 ? entities.Count : 0;
         }
         public async Task<int> DeleteAsync(Expression<Func<T, bool>> whereLambda)

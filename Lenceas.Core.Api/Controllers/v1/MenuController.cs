@@ -39,7 +39,7 @@ namespace Lenceas.Core.Controllers
 
         #region CRUD
         /// <summary>
-        /// 获取菜单结构树
+        /// 获取有权限的菜单结构树
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetMenuTree")]

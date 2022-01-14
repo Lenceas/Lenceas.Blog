@@ -54,7 +54,7 @@ namespace Lenceas.Core.Controllers
                 if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pwd))
                 {
                     r.status = 400;
-                    r.msg = "账号或密码不能为空";
+                    r.msg = "账号或密码不能为空！";
                     return r;
                 }
                 var user = await _userServices.GetEntity(t => t.UserName.Equals(name) && t.Password.Equals(MD5Helper.MD5Encrypt32(pwd)));
@@ -77,15 +77,15 @@ namespace Lenceas.Core.Controllers
                     if (responseJson != null)
                     {
                         r.status = 200;
-                        r.msg = "登录成功";
+                        r.msg = "登录成功！";
                         r.data = responseJson;
-                        new AuthHelper(_accessor, _redis).SaveCurrSessionAndUserRole(responseJson, new AuthModel() { UserID = user.Id, UserName = user.UserName, RoleIDs = userRole.Select(_ => _.Id).Distinct().ToList() });
+                        new AuthHelper(_accessor, _redis).SaveCurrSessionAndUserRole(responseJson, new AuthModel() { UserID = user.Id, UserName = user.UserName, RoleIDs = userRole?.Select(_ => _.Id).Distinct().ToList() ?? new List<int>() });
                     }
                 }
                 else
                 {
                     r.status = 401;
-                    r.msg = "账号或密码错误";
+                    r.msg = "账号或密码错误！";
                 }
             }
             catch (Exception ex)
@@ -112,25 +112,25 @@ namespace Lenceas.Core.Controllers
                 if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pwd))
                 {
                     r.status = 400;
-                    r.msg = "账号或密码不能为空";
+                    r.msg = "账号或密码不能为空！";
                     return r;
                 }
                 var isExist = await _userServices.ExistName(name);
                 if (isExist)
                 {
                     r.status = 400;
-                    r.msg = "账号已存在";
+                    r.msg = "账号已存在！";
                     return r;
                 }
                 var user = await _userServices.Register(name, pwd);
                 if (user == null)
                 {
                     r.status = 400;
-                    r.msg = "注册失败";
+                    r.msg = "注册失败！";
                     return r;
                 }
                 r.status = 200;
-                r.msg = "注册成功";
+                r.msg = "注册成功！";
                 r.data = user;
             }
             catch (Exception ex)
@@ -183,15 +183,15 @@ namespace Lenceas.Core.Controllers
                         if (responseJson != null)
                         {
                             r.status = 200;
-                            r.msg = "刷新Token成功";
+                            r.msg = "刷新Token成功！";
                             r.data = responseJson;
-                            new AuthHelper(_accessor, _redis).SaveCurrSessionAndUserRole(responseJson, new AuthModel() { UserID = user.Id, UserName = user.UserName, RoleIDs = userRole.Select(_ => _.Id).Distinct().ToList() });
+                            new AuthHelper(_accessor, _redis).SaveCurrSessionAndUserRole(responseJson, new AuthModel() { UserID = user.Id, UserName = user.UserName, RoleIDs = userRole?.Select(_ => _.Id).Distinct().ToList() ?? new List<int>() });
                             return r;
                         }
                     }
                 }
                 r.status = 400;
-                r.msg = "刷新token失败请重新登录";
+                r.msg = "刷新token失败请重新登录！";
                 return r;
             }
             catch (Exception ex)
