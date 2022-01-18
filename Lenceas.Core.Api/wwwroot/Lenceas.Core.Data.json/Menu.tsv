@@ -3,7 +3,7 @@
     "Id": 1,
     "MenuPID": 0,
     "MenuName": "系统面板",
-    "MenuUrl": "/admin",
+    "MenuUrl": "/admin/index",
     "MenuIcon": "el-icon-s-home",
     "CDate": "\/Date(1604674711000+0800)\/",
     "MDate": "\/Date(1604674711000+0800)\/",
