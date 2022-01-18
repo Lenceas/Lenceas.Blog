@@ -7,7 +7,7 @@ namespace Lenceas.Core.Extensions
 {
     public class AuthHelper
     {
-        public static AuthModel _userRole;
+        public AuthModel _userRole;
         private readonly IHttpContextAccessor _accessor;
         private readonly IRedisBaseRepository _redis;
         public AuthHelper(IHttpContextAccessor accessor, IRedisBaseRepository redis)

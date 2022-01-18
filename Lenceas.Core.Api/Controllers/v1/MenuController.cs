@@ -25,7 +25,7 @@ namespace Lenceas.Core.Api.Controllers
         private readonly IHttpContextAccessor _accessor;
         private readonly IRedisBaseRepository _redis;
         private readonly IMapper _mapper;
-        private static AuthModel _userRole;
+        private readonly AuthModel _userRole;
         private readonly IMenuServices _menuServices;
         public MenuController(IHttpContextAccessor accessor, IRedisBaseRepository redis, IMenuServices menuServices, IMapper mapper)
         {
