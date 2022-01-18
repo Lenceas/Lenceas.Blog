@@ -14,6 +14,7 @@ namespace Lenceas.Core.Model
         public virtual DbSet<Menu> menu { get; set; }
         public virtual DbSet<UserRole> userRole { get; set; }
         public virtual DbSet<RoleMenu> roleMenu { get; set; }
+        public virtual DbSet<BlogArticle> blogArticle { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,6 +45,10 @@ namespace Lenceas.Core.Model
                 entity.HasKey(e => e.Id).HasName("PRIMARY");
             });
             modelBuilder.Entity<RoleMenu>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PRIMARY");
+            });
+            modelBuilder.Entity<BlogArticle>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PRIMARY");
             });

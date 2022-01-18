@@ -119,6 +119,71 @@
             查看
             </summary>
         </member>
+        <member name="T:Lenceas.Core.Model.BlogArticle">
+            <summary>
+            博客文章表
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.SubTitle">
+            <summary>
+            副标题
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Intro">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Thumbnail">
+            <summary>
+            缩略图
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.TagIDs">
+            <summary>
+            标签集合
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.Views">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.CommentNum">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.IsHot">
+            <summary>
+            是否推荐
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticle.IsHome">
+            <summary>
+            是否首页
+            </summary>
+        </member>
         <member name="T:Lenceas.Core.Model.Menu">
             <summary>
             菜单表
@@ -273,11 +338,6 @@
             主键
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.BaseEditWebModel.CDate">
-            <summary>
-            创建时间
-            </summary>
-        </member>
         <member name="P:Lenceas.Core.Model.BaseEditWebModel.MDate">
             <summary>
             更新时间
@@ -336,6 +396,126 @@
         <member name="P:Lenceas.Core.Model.TokenInfoViewModel.token_type">
             <summary>
             Token类型
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.BlogArticleEditWebModel">
+            <summary>
+            博客文章 EditWebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.SubTitle">
+            <summary>
+            副标题
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.Intro">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.Thumbnail">
+            <summary>
+            缩略图
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.TagIDs">
+            <summary>
+            标签集合
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.IsHot">
+            <summary>
+            是否推荐
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleEditWebModel.IsHome">
+            <summary>
+            是否首页
+            </summary>
+        </member>
+        <member name="T:Lenceas.Core.Model.BlogArticleWebModel">
+            <summary>
+            博客文章 WebModel
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.SubTitle">
+            <summary>
+            副标题
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Intro">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Thumbnail">
+            <summary>
+            缩略图
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Tags">
+            <summary>
+            标签集合
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.Views">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.CommentNum">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.IsHot">
+            <summary>
+            是否推荐
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.BlogArticleWebModel.IsHome">
+            <summary>
+            是否首页
             </summary>
         </member>
         <member name="T:Lenceas.Core.Model.MenuEditWebModel">

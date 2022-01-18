@@ -9,6 +9,13 @@ namespace Lenceas.Core.Model
     /// </summary>
     public class BaseEntity
     {
+        public BaseEntity()
+        {
+            CDate = DateTime.Now;
+            MDate = DateTime.Now;
+            Remark = string.Empty;
+        }
+
         /// <summary>
         /// 主键
         /// </summary>

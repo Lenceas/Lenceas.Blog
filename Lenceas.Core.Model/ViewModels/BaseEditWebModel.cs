@@ -11,11 +11,6 @@
         public int Id { get; set; }
 
         /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CDate { get; set; }
-
-        /// <summary>
         /// 更新时间
         /// </summary>
         public DateTime MDate { get; set; }

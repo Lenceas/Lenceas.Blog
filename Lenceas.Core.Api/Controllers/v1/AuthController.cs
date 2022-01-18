@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using static Lenceas.Core.Extensions.CustomApiVersion;
 
-namespace Lenceas.Core.Controllers
+namespace Lenceas.Core.Api.Controllers
 {
     /// <summary>
     /// 权限相关接口

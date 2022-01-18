@@ -13,9 +13,9 @@
   {
     "Id": 2,
     "MenuPID": 0,
-    "MenuName": "用户中心",
-    "MenuUrl": "/admin/user",
-    "MenuIcon": "el-icon-user",
+    "MenuName": "博文日记",
+    "MenuUrl": "/admin/article",
+    "MenuIcon": "el-icon-notebook-2",
     "CDate": "\/Date(1604674711000+0800)\/",
     "MDate": "\/Date(1604674711000+0800)\/",
     "Sort": 2,
@@ -24,12 +24,23 @@
   {
     "Id": 3,
     "MenuPID": 0,
+    "MenuName": "用户中心",
+    "MenuUrl": "/admin/user",
+    "MenuIcon": "el-icon-user",
+    "CDate": "\/Date(1604674711000+0800)\/",
+    "MDate": "\/Date(1604674711000+0800)\/",
+    "Sort": 3,
+    "Remark": ""
+  },
+  {
+    "Id": 4,
+    "MenuPID": 0,
     "MenuName": "系统设置",
     "MenuUrl": "/admin/setting",
     "MenuIcon": "el-icon-setting",
     "CDate": "\/Date(1604674711000+0800)\/",
     "MDate": "\/Date(1604674711000+0800)\/",
-    "Sort": 3,
+    "Sort": 4,
     "Remark": ""
   }
 ]

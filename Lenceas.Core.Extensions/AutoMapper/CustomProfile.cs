@@ -20,8 +20,12 @@ namespace Lenceas.Core.Extensions.AutoMapper
             CreateMap<UserEditWebModel, User>();
             CreateMap<Menu, MenuWebModel>();
             CreateMap<Menu, MenuEditWebModel>();
-            CreateMap<UserWebModel, Menu>();
+            CreateMap<MenuWebModel, Menu>();
             CreateMap<MenuEditWebModel, Menu>();
+            CreateMap<BlogArticle, BlogArticleWebModel>();
+            CreateMap<BlogArticle, BlogArticleEditWebModel>();
+            CreateMap<BlogArticleWebModel, BlogArticle>();
+            CreateMap<BlogArticleEditWebModel, BlogArticle>();
         }
     }
 }

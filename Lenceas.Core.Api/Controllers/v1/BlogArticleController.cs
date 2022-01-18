@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
-using Lenceas.Core.Extensions;
+using Lenceas.Core.Common;
 using Lenceas.Core.IServices;
 using Lenceas.Core.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,66 +15,46 @@ using static Lenceas.Core.Extensions.CustomApiVersion;
 namespace Lenceas.Core.Api.Controllers
 {
     /// <summary>
-    /// 菜单接口
+    /// 博客文章接口
     /// </summary>
     [ApiController]
     [Produces("application/json")]
     [CustomRoute(ApiVersions.v1)]
     [Authorize]
-    public class MenuController : ControllerBase
+    public class BlogArticleController : ControllerBase
     {
         #region 构造函数
-        private readonly IHttpContextAccessor _accessor;
-        private readonly IRedisBaseRepository _redis;
+        private readonly IBlogArticleServices _blogArticleServices;
         private readonly IMapper _mapper;
-        private static AuthModel _userRole;
-        private readonly IMenuServices _menuServices;
-        public MenuController(IHttpContextAccessor accessor, IRedisBaseRepository redis, IMenuServices menuServices, IMapper mapper)
+        private readonly IHttpContextAccessor _accessor;
+        private readonly IMemoryCache _memoryCache;
+        private readonly IDistributedCache _cache;
+        public BlogArticleController(IBlogArticleServices blogArticleServices, IMapper mapper, IHttpContextAccessor accessor, IMemoryCache memoryCache, IDistributedCache cache)
         {
-            _accessor = accessor;
-            _redis = redis;
+            _blogArticleServices = blogArticleServices;
             _mapper = mapper;
-            _userRole = new AuthHelper(accessor, redis).UserRoleCache;
-            _menuServices = menuServices;
+            _accessor = accessor;
+            _memoryCache = memoryCache;
+            _cache = cache;
         }
         #endregion
 
         #region CRUD
         /// <summary>
-        /// 获取有权限的菜单结构树
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetMenuTree")]
-        public async Task<ApiResult<IEnumerable<MenuTreeWebModel>>> GetMenuTree()
-        {
-            var r = new ApiResult<IEnumerable<MenuTreeWebModel>>();
-            try
-            {
-                r.msg = "查询成功";
-                r.data = await _menuServices.GetMenuTree(_userRole);
-            }
-            catch (Exception ex)
-            {
-                r.status = 500;
-                r.msg = ex.Message;
-            }
-            return r;
-        }
-
-        /// <summary>
-        /// 获取菜单分页
+        /// 获取博客文章分页
         /// </summary>
         /// <param name="pageIndex">当前页数</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns></returns>
         [HttpGet("GetPage")]
-        public async Task<ApiResult<PageViewModel<MenuWebModel>>> GetPage(int pageIndex = 1, int pageSize = 10)
+        [AllowAnonymous]
+        public async Task<ApiResult<PageViewModel<BlogArticleWebModel>>> GetPage(int pageIndex = 1, int pageSize = 10)
         {
-            var r = new ApiResult<PageViewModel<MenuWebModel>>();
+            var r = new ApiResult<PageViewModel<BlogArticleWebModel>>();
             try
             {
                 r.msg = "查询成功";
-                r.data = _mapper.Map<List<MenuWebModel>>(await _menuServices.GetPage(pageIndex, pageSize)).AsPageViewModel(pageIndex, pageSize);
+                r.data = _mapper.Map<List<BlogArticleWebModel>>(await _blogArticleServices.GetPage(pageIndex, pageSize)).AsPageViewModel(pageIndex, pageSize);
             }
             catch (Exception ex)
             {
@@ -83,17 +65,18 @@ namespace Lenceas.Core.Api.Controllers
         }
 
         /// <summary>
-        /// 获取菜单列表
+        /// 获取博客文章列表
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetList")]
-        public async Task<ApiResult<List<MenuWebModel>>> GetList()
+        [AllowAnonymous]
+        public async Task<ApiResult<List<BlogArticleWebModel>>> GetList()
         {
-            var r = new ApiResult<List<MenuWebModel>>();
+            var r = new ApiResult<List<BlogArticleWebModel>>();
             try
             {
                 r.msg = "查询成功";
-                r.data = _mapper.Map<List<MenuWebModel>>(await _menuServices.GetList());
+                r.data = _mapper.Map<List<BlogArticleWebModel>>(await _blogArticleServices.GetList());
             }
             catch (Exception ex)
             {
@@ -104,21 +87,22 @@ namespace Lenceas.Core.Api.Controllers
         }
 
         /// <summary>
-        /// 获取菜单详情
+        /// 获取博客文章详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ApiResult<MenuWebModel>> GetById(int id)
+        [AllowAnonymous]
+        public async Task<ApiResult<BlogArticleWebModel>> GetById(int id)
         {
-            var r = new ApiResult<MenuWebModel>();
+            var r = new ApiResult<BlogArticleWebModel>();
             try
             {
-                var entity = await _menuServices.GetById(id);
+                var entity = await _blogArticleServices.GetById(id);
                 if (entity != null)
                 {
                     r.msg = "查询成功";
-                    r.data = _mapper.Map<MenuWebModel>(entity);
+                    r.data = _mapper.Map<BlogArticleWebModel>(entity);
                 }
                 else
                 {
@@ -135,31 +119,17 @@ namespace Lenceas.Core.Api.Controllers
         }
 
         /// <summary>
-        /// 添加菜单
+        /// 添加博客文章
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ApiResult<string>> Add([FromBody] MenuEditWebModel model)
+        public async Task<ApiResult<string>> Add([FromBody] BlogArticleEditWebModel model)
         {
             var r = new ApiResult<string>();
-            var isNew = await _menuServices.GetEntity(t => t.MenuName.Equals(model.MenuName)) == null;
-            if (!isNew)
-            {
-                r.status = 400;
-                r.msg = "菜单名称已存在";
-                return r;
-            }
-            isNew = await _menuServices.GetEntity(t => t.MenuUrl.Equals(model.MenuUrl)) == null;
-            if (!isNew)
-            {
-                r.status = 400;
-                r.msg = "菜单路由已存在";
-                return r;
-            }
             try
             {
-                r.status = await _menuServices.AddAsync(new Menu(model.MenuPID, model.MenuName, model.MenuUrl, model.MenuIcon)) > 0 ? 200 : 400;
+                r.status = await _blogArticleServices.AddAsync(new BlogArticle() { }) > 0 ? 200 : 400;
                 r.msg = r.status == 200 ? "添加成功" : "添加失败";
             }
             catch (Exception ex)
@@ -171,13 +141,13 @@ namespace Lenceas.Core.Api.Controllers
         }
 
         /// <summary>
-        /// 更新菜单
+        /// 更新博客文章
         /// </summary>
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<ApiResult<string>> Update(int id, [FromBody] MenuEditWebModel model)
+        public async Task<ApiResult<string>> Update(int id, [FromBody] BlogArticleEditWebModel model)
         {
             var r = new ApiResult<string>();
             if (!id.Equals(model.Id))
@@ -186,30 +156,16 @@ namespace Lenceas.Core.Api.Controllers
                 r.msg = "传入Id与实体Id不一致";
                 return r;
             }
-            var isExist = await _menuServices.IsExist(id);
+            var isExist = await _blogArticleServices.IsExist(id);
             if (!isExist)
             {
                 r.status = 404;
                 r.msg = "未匹配到数据";
                 return r;
             }
-            var isNew = await _menuServices.GetEntity(t => t.MenuName.Equals(model.MenuName)) == null;
-            if (!isNew)
-            {
-                r.status = 400;
-                r.msg = "菜单名称已存在";
-                return r;
-            }
-            isNew = await _menuServices.GetEntity(t => t.MenuUrl.Equals(model.MenuUrl)) == null;
-            if (!isNew)
-            {
-                r.status = 400;
-                r.msg = "菜单路由已存在";
-                return r;
-            }
             try
             {
-                r.status = await _menuServices.UpdateAsync(t => t.Id == id, t => new Menu() { MenuPID = model.MenuPID, MenuName = model.MenuName, MenuUrl = model.MenuUrl, MenuIcon = string.IsNullOrEmpty(model.MenuIcon) ? "el-icon-s-home" : model.MenuIcon, MDate = DateTime.Now }) == 0 ? 200 : 400;
+                r.status = await _blogArticleServices.UpdateAsync(t => t.Id == id, t => new BlogArticle() { MDate = DateTime.Now.ToLocalTime() }) == 0 ? 200 : 400;
                 r.msg = r.status == 200 ? "更新成功" : "更新失败";
             }
             catch (Exception ex)
@@ -221,7 +177,7 @@ namespace Lenceas.Core.Api.Controllers
         }
 
         /// <summary>
-        /// 删除菜单
+        /// 删除博客文章
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -231,10 +187,10 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             try
             {
-                var isExist = await _menuServices.IsExist(id);
+                var isExist = await _blogArticleServices.IsExist(id);
                 if (isExist)
                 {
-                    r.status = await _menuServices.DeleteById(id) > 0 ? 200 : 400;
+                    r.status = await _blogArticleServices.DeleteById(id) > 0 ? 200 : 400;
                     r.msg = r.status == 200 ? "删除成功" : "删除失败";
                 }
                 else

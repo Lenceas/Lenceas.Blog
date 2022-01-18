@@ -4,12 +4,12 @@
         <name>Lenceas.Core.Api</name>
     </assembly>
     <members>
-        <member name="T:Lenceas.Core.Controllers.AuthController">
+        <member name="T:Lenceas.Core.Api.Controllers.AuthController">
             <summary>
             权限相关接口
             </summary>
         </member>
-        <member name="M:Lenceas.Core.Controllers.AuthController.Login(System.String,System.String)">
+        <member name="M:Lenceas.Core.Api.Controllers.AuthController.Login(System.String,System.String)">
             <summary>
             登录
             </summary>
@@ -17,7 +17,7 @@
             <param name="pwd">密码</param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.AuthController.Register(System.String,System.String)">
+        <member name="M:Lenceas.Core.Api.Controllers.AuthController.Register(System.String,System.String)">
             <summary>
             注册
             </summary>
@@ -25,25 +25,73 @@
             <param name="pwd">密码</param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.AuthController.RefreshToken(System.String)">
+        <member name="M:Lenceas.Core.Api.Controllers.AuthController.RefreshToken(System.String)">
             <summary>
             请求刷新Token（以旧换新），不安全即将遗弃，新方法开发中:通过redis中间层来控制，这样还可以实现单点登录，或者退出登录，取消token权限的问题
             </summary>
             <param name="token"></param>
             <returns></returns>
         </member>
-        <member name="T:Lenceas.Core.Controllers.MenuController">
+        <member name="T:Lenceas.Core.Api.Controllers.BlogArticleController">
+            <summary>
+            博客文章接口
+            </summary>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.BlogArticleController.GetPage(System.Int32,System.Int32)">
+            <summary>
+            获取博客文章分页
+            </summary>
+            <param name="pageIndex">当前页数</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.BlogArticleController.GetList">
+            <summary>
+            获取博客文章列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.BlogArticleController.GetById(System.Int32)">
+            <summary>
+            获取博客文章详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.BlogArticleController.Add(Lenceas.Core.Model.BlogArticleEditWebModel)">
+            <summary>
+            添加博客文章
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.BlogArticleController.Update(System.Int32,Lenceas.Core.Model.BlogArticleEditWebModel)">
+            <summary>
+            更新博客文章
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.BlogArticleController.Delete(System.Int32)">
+            <summary>
+            删除博客文章
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lenceas.Core.Api.Controllers.MenuController">
             <summary>
             菜单接口
             </summary>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.GetMenuTree">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.GetMenuTree">
             <summary>
             获取有权限的菜单结构树
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.GetPage(System.Int32,System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.GetPage(System.Int32,System.Int32)">
             <summary>
             获取菜单分页
             </summary>
@@ -51,27 +99,27 @@
             <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.GetList">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.GetList">
             <summary>
             获取菜单列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.GetById(System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.GetById(System.Int32)">
             <summary>
             获取菜单详情
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.Add(Lenceas.Core.Model.MenuEditWebModel)">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.Add(Lenceas.Core.Model.MenuEditWebModel)">
             <summary>
             添加菜单
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.Update(System.Int32,Lenceas.Core.Model.MenuEditWebModel)">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.Update(System.Int32,Lenceas.Core.Model.MenuEditWebModel)">
             <summary>
             更新菜单
             </summary>
@@ -79,19 +127,19 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.MenuController.Delete(System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.MenuController.Delete(System.Int32)">
             <summary>
             删除菜单
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:Lenceas.Core.Controllers.TestController">
+        <member name="T:Lenceas.Core.Api.Controllers.TestController">
             <summary>
             测试接口
             </summary>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.GetPage(System.Int32,System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.GetPage(System.Int32,System.Int32)">
             <summary>
             获取测试信息分页
             </summary>
@@ -99,27 +147,27 @@
             <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.GetList">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.GetList">
             <summary>
             获取测试信息列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.GetById(System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.GetById(System.Int32)">
             <summary>
             获取测试信息详情
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.Add(Lenceas.Core.Model.TestEditWebModel)">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.Add(Lenceas.Core.Model.TestEditWebModel)">
             <summary>
             添加测试信息
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.Update(System.Int32,Lenceas.Core.Model.TestEditWebModel)">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.Update(System.Int32,Lenceas.Core.Model.TestEditWebModel)">
             <summary>
             更新测试信息
             </summary>
@@ -127,43 +175,43 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.Delete(System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.Delete(System.Int32)">
             <summary>
             删除测试信息
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.GetMiniProfilerHtml">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.GetMiniProfilerHtml">
             <summary>
             获取 MiniProfiler Html
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.TestMemoryCache">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.TestMemoryCache">
             <summary>
             测试-MemoryCache
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.TestDistributedCache">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.TestDistributedCache">
             <summary>
             测试-DistributedCache
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.TestController.TestRedis">
+        <member name="M:Lenceas.Core.Api.Controllers.TestController.TestRedis">
             <summary>
             测试-Redis
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Lenceas.Core.Controllers.UserController">
+        <member name="T:Lenceas.Core.Api.Controllers.UserController">
             <summary>
             用户接口
             </summary>
         </member>
-        <member name="M:Lenceas.Core.Controllers.UserController.GetPage(System.Int32,System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.UserController.GetPage(System.Int32,System.Int32)">
             <summary>
             获取用户分页
             </summary>
@@ -171,27 +219,27 @@
             <param name="pageSize">分页大小</param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.UserController.GetList">
+        <member name="M:Lenceas.Core.Api.Controllers.UserController.GetList">
             <summary>
             获取用户列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.UserController.GetById(System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.UserController.GetById(System.Int32)">
             <summary>
             获取用户详情
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.UserController.Add(Lenceas.Core.Model.UserEditWebModel)">
+        <member name="M:Lenceas.Core.Api.Controllers.UserController.Add(Lenceas.Core.Model.UserEditWebModel)">
             <summary>
             添加用户
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.UserController.Update(System.Int32,Lenceas.Core.Model.UserEditWebModel)">
+        <member name="M:Lenceas.Core.Api.Controllers.UserController.Update(System.Int32,Lenceas.Core.Model.UserEditWebModel)">
             <summary>
             更新用户
             </summary>
@@ -199,7 +247,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Lenceas.Core.Controllers.UserController.Delete(System.Int32)">
+        <member name="M:Lenceas.Core.Api.Controllers.UserController.Delete(System.Int32)">
             <summary>
             删除用户
             </summary>

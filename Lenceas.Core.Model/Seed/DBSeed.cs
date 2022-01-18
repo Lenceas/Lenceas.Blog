@@ -141,6 +141,19 @@ namespace Lenceas.Core.Model
                     }
                     #endregion
 
+                    #region 博客文章表 BlogArticle
+                    if (!await mySqlContext.blogArticle.AnyAsync())
+                    {
+                        await mySqlContext.blogArticle.AddRangeAsync(JsonHelper.ParseFormByJson<List<BlogArticle>>(FileHelper.ReadFile(string.Format(WebRootPath + SeedDataFolder, "BlogArticle"), Encoding.UTF8)));
+                        await mySqlContext.SaveChangesAsync();
+                        Console.WriteLine("博客文章表 BlogArticle 数据初始化成功!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("博客文章表 BlogArticle 已存在数据!");
+                    }
+                    #endregion
+
                     Console.WriteLine();
                     Console.WriteLine("数据初始化完成!");
                     Console.WriteLine();

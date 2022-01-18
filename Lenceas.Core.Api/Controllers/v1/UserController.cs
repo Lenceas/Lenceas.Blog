@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Lenceas.Core.Extensions.CustomApiVersion;
 
-namespace Lenceas.Core.Controllers
+namespace Lenceas.Core.Api.Controllers
 {
     /// <summary>
     /// 用户接口
