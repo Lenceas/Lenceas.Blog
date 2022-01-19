@@ -36,7 +36,7 @@ builder.Services.AddMemoryCacheSetup();
 builder.Services.AddRedisCacheSetup();
 builder.Services.AddDistributedRedisCache(options =>
 {
-    options.Configuration = AppSettings.app(new string[] { "Redis", "ConnectionString" }).ToString();
+    options.Configuration = ConfigHelper.RedisConnectionString;
     options.InstanceName = "RedisDistributedCache";
 });
 builder.Services.AddDbSetup();

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Lenceas.Core.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lenceas.Core.Model
 {
@@ -18,8 +19,7 @@ namespace Lenceas.Core.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var mysql = DifDBConnOfSecurity(@"./mysql_Conn.txt", @"F:\my-file\mysql_Conn.txt", @"D:\my-file\mysql_Conn.txt", @"C:\my-file\mysql_Conn.txt");
-            optionsBuilder.UseMySql(mysql, ServerVersion.AutoDetect(mysql));
+            optionsBuilder.UseMySql(ConfigHelper.MySqlConnectionString, ServerVersion.AutoDetect(ConfigHelper.MySqlConnectionString));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -58,22 +58,6 @@ namespace Lenceas.Core.Model
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
-
-        private static string DifDBConnOfSecurity(params string[] conn)
-        {
-            foreach (var item in conn)
-            {
-                try
-                {
-                    if (File.Exists(item))
-                    {
-                        return File.ReadAllText(item).Trim();
-                    }
-                }
-                catch (System.Exception) { }
-            }
-            return conn[^1];
         }
     }
 }

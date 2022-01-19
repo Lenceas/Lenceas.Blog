@@ -18,9 +18,7 @@ namespace Lenceas.Core.Extensions
             // 配置启动Redis服务，虽然可能影响项目启动速度，但是不能在运行的时候报错，所以是合理的
             services.AddSingleton(sp =>
             {
-                //获取连接字符串
-                string redisConfiguration = AppSettings.app(new string[] { "Redis", "ConnectionString" });
-                var configuration = ConfigurationOptions.Parse(redisConfiguration, true);
+                var configuration = ConfigurationOptions.Parse(ConfigHelper.RedisConnectionString, true);
                 configuration.ResolveDns = true;
                 return ConnectionMultiplexer.Connect(configuration);
             });
