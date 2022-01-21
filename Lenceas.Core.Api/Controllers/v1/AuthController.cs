@@ -142,13 +142,12 @@ namespace Lenceas.Core.Api.Controllers
         }
 
         /// <summary>
-        /// 请求刷新Token（以旧换新），不安全即将遗弃，新方法开发中:通过redis中间层来控制，这样还可以实现单点登录，或者退出登录，取消token权限的问题
+        /// 请求刷新Token
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("RefreshToken")]
-        [Obsolete]
         public async Task<ApiResult<TokenInfoViewModel>> RefreshToken(string token)
         {
             var r = new ApiResult<TokenInfoViewModel>();
@@ -192,6 +191,40 @@ namespace Lenceas.Core.Api.Controllers
                 }
                 r.status = 400;
                 r.msg = "刷新token失败请重新登录！";
+                return r;
+            }
+            catch (Exception ex)
+            {
+                r.status = 500;
+                r.msg = ex.Message;
+            }
+            return r;
+        }
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Logout")]
+        public async Task<ApiResult> Logout(string token)
+        {
+            var r = new ApiResult();
+            try
+            {
+                if (!string.IsNullOrEmpty(token))
+                {
+                    var tokenModel = JwtHelper.SerializeToken(token);
+                    if (tokenModel != null && JwtHelper.CustomSafeVerify(token) && tokenModel.Uid > 0)
+                    {
+                        if (_redis.Exist($"Token:{token}"))
+                        {
+                            await _redis.RemoveAsync($"Token:{token}");
+                        }
+                    }
+                }
+                r.msg = "退出登录成功";
                 return r;
             }
             catch (Exception ex)
