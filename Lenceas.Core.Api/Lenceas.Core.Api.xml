@@ -27,7 +27,14 @@
         </member>
         <member name="M:Lenceas.Core.Api.Controllers.AuthController.RefreshToken(System.String)">
             <summary>
-            请求刷新Token（以旧换新），不安全即将遗弃，新方法开发中:通过redis中间层来控制，这样还可以实现单点登录，或者退出登录，取消token权限的问题
+            请求刷新Token
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lenceas.Core.Api.Controllers.AuthController.Logout(System.String)">
+            <summary>
+            退出登录
             </summary>
             <param name="token"></param>
             <returns></returns>
