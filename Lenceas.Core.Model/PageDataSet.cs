@@ -19,7 +19,7 @@
             HasNextPage = PageIndex < TotalPages;
         }
 
-        public PageDataSet(IEnumerable<T> entities) : base((IList<T>)entities.ToList())
+        public PageDataSet(IEnumerable<T> entities) : base(entities.ToList())
         {
         }
 
