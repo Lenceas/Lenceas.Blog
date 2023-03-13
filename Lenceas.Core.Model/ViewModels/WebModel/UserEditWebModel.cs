@@ -8,16 +8,16 @@
         /// <summary>
         /// 账号
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get; set; } = default!;
 
         /// <summary>
         /// 密码
         /// </summary>
-        public string Password { get; set; }
+        public string Password { get; set; } = default!;
 
         /// <summary>
         /// 邮箱
         /// </summary>
-        public string Email { get; set; }
+        public string Email { get; set; } = default!;
     }
 }

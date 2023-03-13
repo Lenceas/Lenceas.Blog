@@ -33,7 +33,7 @@ namespace Lenceas.Core.Model
                 Console.WriteLine("************ 开始自动初始化数据 *****************");
                 Console.WriteLine();
 
-                if (AppSettings.app(new string[] { "AppSettings", "SeedDB" }).ObjToBool())
+                if (AppSettings.App(new string[] { "AppSettings", "SeedDB" }).ObjToBool())
                 {
                     Console.WriteLine("开始重置数据库...");
                     await mySqlContext.Database.EnsureDeletedAsync();
@@ -45,7 +45,7 @@ namespace Lenceas.Core.Model
                 Console.WriteLine("开始初始化数据...");
                 Console.WriteLine();
 
-                if (AppSettings.app(new string[] { "AppSettings", "SeedDBData" }).ObjToBool())
+                if (AppSettings.App(new string[] { "AppSettings", "SeedDBData" }).ObjToBool())
                 {
                     JsonSerializerSettings setting = new JsonSerializerSettings();
                     JsonConvert.DefaultSettings = new Func<JsonSerializerSettings>(() =>

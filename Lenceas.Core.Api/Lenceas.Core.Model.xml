@@ -9,32 +9,42 @@
             Api通用返回信息类
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.status">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Status">
             <summary>
             状态码
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.msg">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Msg">
             <summary>
             返回信息
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.data">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Data">
             <summary>
             响应数据
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.status">
+        <member name="P:Lenceas.Core.Model.ApiResult.Status">
             <summary>
             状态码
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.msg">
+        <member name="P:Lenceas.Core.Model.ApiResult.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:Lenceas.Core.Model.ApiResult.Msg">
             <summary>
             返回信息
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.data">
+        <member name="P:Lenceas.Core.Model.ApiResult.Data">
             <summary>
             响应数据
             </summary>
@@ -383,17 +393,17 @@
             备注
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.token">
+        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.Token">
             <summary>
             Token
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.expires_in">
+        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.Expires_In">
             <summary>
             过期时间 单位:秒 默认15分钟
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.token_type">
+        <member name="P:Lenceas.Core.Model.TokenInfoViewModel.Token_Type">
             <summary>
             Token类型
             </summary>

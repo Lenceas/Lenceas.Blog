@@ -21,13 +21,11 @@ namespace Lenceas.Core.Extensions
             if (token.IsNotEmptyOrNull() && jwtHandler.CanReadToken(token))
             {
                 JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(token);
-                object uid;
-                object role;
-                jwtToken.Payload.TryGetValue("uid", out uid);
-                jwtToken.Payload.TryGetValue(ClaimTypes.Role, out role);
+                jwtToken.Payload.TryGetValue("uid", out object? uid);
+                jwtToken.Payload.TryGetValue(ClaimTypes.Role, out object? role);
                 tokenModelJwt = new TokenModelJwt
                 {
-                    Uid = uid.ObjToInt(),
+                    Uid = uid?.ObjToInt() ?? 0,
                     Role = role != null ? role.ObjToString() : "",
                 };
             }
@@ -63,7 +61,6 @@ namespace Lenceas.Core.Extensions
         /// <summary>
         /// 角色
         /// </summary>
-        public string Role { get; set; }
-
+        public string Role { get; set; } = default!;
     }
 }

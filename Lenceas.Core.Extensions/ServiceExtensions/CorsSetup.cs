@@ -19,15 +19,15 @@ namespace Lenceas.Core.Extensions
 
             services.AddCors(c =>
             {
-                if (!AppSettings.app(new string[] { "Startup", "Cors", "EnableAllIPs" }).ObjToBool())
+                if (!AppSettings.App(new string[] { "Startup", "Cors", "EnableAllIPs" }).ObjToBool())
                 {
-                    c.AddPolicy(AppSettings.app(new string[] { "Startup", "Cors", "PolicyName" }),
+                    c.AddPolicy(AppSettings.App(new string[] { "Startup", "Cors", "PolicyName" }),
 
                         policy =>
                         {
 
                             policy
-                            .WithOrigins(AppSettings.app(new string[] { "Startup", "Cors", "IPs" }).Split(','))
+                            .WithOrigins(AppSettings.App(new string[] { "Startup", "Cors", "IPs" }).Split(','))
                             .AllowAnyHeader()//Ensures that the policy allows any header.
                             .AllowAnyMethod();
                         });
@@ -35,7 +35,7 @@ namespace Lenceas.Core.Extensions
                 else
                 {
                     //允许任意跨域请求
-                    c.AddPolicy(AppSettings.app(new string[] { "Startup", "Cors", "PolicyName" }),
+                    c.AddPolicy(AppSettings.App(new string[] { "Startup", "Cors", "PolicyName" }),
                         policy =>
                         {
                             policy

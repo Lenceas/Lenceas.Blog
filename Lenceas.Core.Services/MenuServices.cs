@@ -1,9 +1,6 @@
 ﻿using Lenceas.Core.IServices;
 using Lenceas.Core.Model;
 using Lenceas.Core.Repository;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lenceas.Core.Services
 {

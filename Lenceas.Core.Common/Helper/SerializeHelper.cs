@@ -23,7 +23,7 @@ namespace Lenceas.Core.Common
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TEntity Deserialize<TEntity>(byte[] value)
+        public static TEntity? Deserialize<TEntity>(byte[] value)
         {
             if (value == null)
             {

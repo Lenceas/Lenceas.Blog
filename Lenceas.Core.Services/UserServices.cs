@@ -2,8 +2,6 @@
 using Lenceas.Core.IServices;
 using Lenceas.Core.Model;
 using Lenceas.Core.Repository;
-using System.Threading.Tasks;
-using System;
 
 namespace Lenceas.Core.Services
 {

@@ -77,9 +77,9 @@ else
 // 封装Swagger展示
 app.UseSwaggerMildd();
 // CORS跨域
-app.UseCors(AppSettings.app(new string[] { "Startup", "Cors", "PolicyName" }));
+app.UseCors(AppSettings.App(new string[] { "Startup", "Cors", "PolicyName" }));
 // 跳转https
-//app.UseHttpsRedirection();
+//App.UseHttpsRedirection();
 // 使用静态文件
 app.UseStaticFiles();
 // 路由

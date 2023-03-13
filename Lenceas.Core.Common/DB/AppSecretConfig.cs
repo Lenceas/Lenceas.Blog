@@ -4,8 +4,8 @@ namespace Lenceas.Core.Common
 {
     public class AppSecretConfig
     {
-        private static string Audience_Secret = AppSettings.app(new string[] { "Audience", "Secret" });
-        private static string Audience_Secret_File = AppSettings.app(new string[] { "Audience", "SecretFile" });
+        private static string Audience_Secret = AppSettings.App(new string[] { "Audience", "Secret" });
+        private static string Audience_Secret_File = AppSettings.App(new string[] { "Audience", "SecretFile" });
 
 
         public static string Audience_Secret_String => InitAudience_Secret();

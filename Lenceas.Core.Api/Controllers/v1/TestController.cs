@@ -56,13 +56,13 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<PageViewModel<TestWebModel>>();
             try
             {
-                r.msg = "查询成功";
-                r.data = _mapper.Map<List<TestWebModel>>(await _testServices.GetPage(pageIndex, pageSize)).AsPageViewModel(pageIndex, pageSize);
+                r.Msg = "查询成功";
+                r.Data = _mapper.Map<List<TestWebModel>>(await _testServices.GetPage(pageIndex, pageSize)).AsPageViewModel(pageIndex, pageSize);
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -77,13 +77,13 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<List<TestWebModel>>();
             try
             {
-                r.msg = "查询成功";
-                r.data = _mapper.Map<List<TestWebModel>>(await _testServices.GetList());
+                r.Msg = "查询成功";
+                r.Data = _mapper.Map<List<TestWebModel>>(await _testServices.GetList());
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -102,19 +102,19 @@ namespace Lenceas.Core.Api.Controllers
                 var entity = await _testServices.GetById(id);
                 if (entity != null)
                 {
-                    r.msg = "查询成功";
-                    r.data = _mapper.Map<TestWebModel>(entity);
+                    r.Msg = "查询成功";
+                    r.Data = _mapper.Map<TestWebModel>(entity);
                 }
                 else
                 {
-                    r.status = 404;
-                    r.msg = "未匹配到数据";
+                    r.Status = 404;
+                    r.Msg = "未匹配到数据";
                 }
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -130,13 +130,13 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             try
             {
-                r.status = await _testServices.AddAsync(new Test(model.Name)) > 0 ? 200 : 400;
-                r.msg = r.status == 200 ? "添加成功" : "添加失败";
+                r.Status = await _testServices.AddAsync(new Test(model.Name)) > 0 ? 200 : 400;
+                r.Msg = r.Status == 200 ? "添加成功" : "添加失败";
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -153,26 +153,26 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             if (!id.Equals(model.Id))
             {
-                r.status = 400;
-                r.msg = "传入Id与实体Id不一致";
+                r.Status = 400;
+                r.Msg = "传入Id与实体Id不一致";
                 return r;
             }
             var isExist = await _testServices.IsExist(id);
             if (!isExist)
             {
-                r.status = 404;
-                r.msg = "未匹配到数据";
+                r.Status = 404;
+                r.Msg = "未匹配到数据";
                 return r;
             }
             try
             {
-                r.status = await _testServices.UpdateAsync(t => t.Id == id, t => new Test() { Name = model.Name, MDate = DateTime.Now.ToLocalTime() }) == 0 ? 200 : 400;
-                r.msg = r.status == 200 ? "更新成功" : "更新失败";
+                r.Status = await _testServices.UpdateAsync(t => t.Id == id, t => new Test() { Name = model.Name, MDate = DateTime.Now.ToLocalTime() }) == 0 ? 200 : 400;
+                r.Msg = r.Status == 200 ? "更新成功" : "更新失败";
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -191,19 +191,19 @@ namespace Lenceas.Core.Api.Controllers
                 var isExist = await _testServices.IsExist(id);
                 if (isExist)
                 {
-                    r.status = await _testServices.DeleteById(id) > 0 ? 200 : 400;
-                    r.msg = r.status == 200 ? "删除成功" : "删除失败";
+                    r.Status = await _testServices.DeleteById(id) > 0 ? 200 : 400;
+                    r.Msg = r.Status == 200 ? "删除成功" : "删除失败";
                 }
                 else
                 {
-                    r.status = 400;
-                    r.msg = "未匹配到数据";
+                    r.Status = 400;
+                    r.Msg = "未匹配到数据";
                 }
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -219,14 +219,14 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             try
             {
-                r.status = 200;
-                r.msg = "查询成功";
-                r.data = MiniProfiler.Current.RenderIncludes(_accessor.HttpContext).ToString();
+                r.Status = 200;
+                r.Msg = "查询成功";
+                r.Data = MiniProfiler.Current.RenderIncludes(_accessor.HttpContext).ToString();
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -241,23 +241,23 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             try
             {
-                r.status = 200;
-                r.msg = "查询成功";
+                r.Status = 200;
+                r.Msg = "查询成功";
                 string key = "Test-MemoryCache";
                 if (_memoryCache.TryGetValue(key, out string time))
                 {
-                    r.data = time;
+                    r.Data = time;
                 }
                 else
                 {
-                    r.data = time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff");
+                    r.Data = time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff");
                     _memoryCache.Set(key, time, TimeSpan.FromSeconds(5));
                 }
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -272,8 +272,8 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             try
             {
-                r.status = 200;
-                r.msg = "查询成功";
+                r.Status = 200;
+                r.Msg = "查询成功";
                 string key = "Test-Redis";
                 var time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff");
                 if (!string.IsNullOrEmpty(_cache.GetString(key)))
@@ -284,12 +284,12 @@ namespace Lenceas.Core.Api.Controllers
                 {
                     _cache.SetString(key, time, new DistributedCacheEntryOptions() { AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(5) });
                 }
-                r.data = time;
+                r.Data = time;
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }
@@ -304,7 +304,7 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<TokenInfoViewModel>();
             try
             {
-                await _redis.SetValueAsync("Blog-Token", new TokenInfoViewModel() { token = "x", expires_in = (int)TimeSpan.FromMinutes(15).TotalSeconds, token_type = "Bearer" }, 15);
+                await _redis.SetValueAsync("Blog-Token", new TokenInfoViewModel() { Token = "x", Expires_In = (int)TimeSpan.FromMinutes(15).TotalSeconds, Token_Type = "Bearer" }, 15);
                 var redisKeyValue = await _redis.GetAsync<TokenInfoViewModel>("Blog-Token");
                 for (int i = 0; i < 100; i++)
                 {
@@ -312,20 +312,20 @@ namespace Lenceas.Core.Api.Controllers
                 }
                 if (redisKeyValue != null)
                 {
-                    r.status = 200;
-                    r.msg = "成功";
-                    r.data = redisKeyValue;
+                    r.Status = 200;
+                    r.Msg = "成功";
+                    r.Data = redisKeyValue;
                 }
                 else
                 {
-                    r.status = 400;
-                    r.msg = "失败";
+                    r.Status = 400;
+                    r.Msg = "失败";
                 }
             }
             catch (Exception ex)
             {
-                r.status = 500;
-                r.msg = ex.Message;
+                r.Status = 500;
+                r.Msg = ex.Message;
             }
             return r;
         }

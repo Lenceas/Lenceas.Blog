@@ -24,9 +24,9 @@ namespace Lenceas.Core.Extensions
             var symmetricKeyAsBase64 = AppSecretConfig.Audience_Secret_String;
             var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64);
             var signingKey = new SymmetricSecurityKey(keyByteArray);
-            var Issuer = AppSettings.app(new string[] { "Audience", "Issuer" });
-            var Audience = AppSettings.app(new string[] { "Audience", "Audience" });
-            var Expires = Convert.ToInt32(AppSettings.app(new string[] { "Audience", "Expires" }) ?? "15");
+            var Issuer = AppSettings.App(new string[] { "Audience", "Issuer" });
+            var Audience = AppSettings.App(new string[] { "Audience", "Audience" });
+            var Expires = Convert.ToInt32(AppSettings.App(new string[] { "Audience", "Expires" }) ?? "15");
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
                 issuer: Issuer,
@@ -40,9 +40,9 @@ namespace Lenceas.Core.Extensions
             //打包返回前台
             var responseJson = new TokenInfoViewModel
             {
-                token = encodedJwt,
-                expires_in = (int)TimeSpan.FromMinutes(Expires).TotalSeconds,
-                token_type = "Bearer"
+                Token = encodedJwt,
+                Expires_In = (int)TimeSpan.FromMinutes(Expires).TotalSeconds,
+                Token_Type = "Bearer"
             };
             return responseJson;
         }

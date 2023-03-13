@@ -49,7 +49,7 @@ namespace Lenceas.Core.Extensions
         {
             try
             {
-                _redis.SetValue($"Token:{tokenInfo.token}", model, tokenInfo.expires_in);
+                _redis.SetValue($"Token:{tokenInfo.Token}", model, tokenInfo.Expires_In);
             }
             catch (Exception ex)
             {

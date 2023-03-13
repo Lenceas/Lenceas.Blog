@@ -17,7 +17,7 @@ namespace Lenceas.Core.Extensions
 
             try
             {
-                if (AppSettings.app("AppSettings", "SeedDB").ObjToBool() || AppSettings.app("AppSettings", "SeedDBData").ObjToBool())
+                if (AppSettings.App("AppSettings", "SeedDB").ObjToBool() || AppSettings.App("AppSettings", "SeedDBData").ObjToBool())
                 {
                     DBSeed.SeedAsyncByEFCore(mySqlContext, webRootPath).Wait();
                 }

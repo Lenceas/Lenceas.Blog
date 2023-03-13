@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lenceas.Core.Model
+﻿namespace Lenceas.Core.Model
 {
     /// <summary>
     /// 基础 WebModel
@@ -34,6 +28,6 @@ namespace Lenceas.Core.Model
         /// <summary>
         /// 备注
         /// </summary>
-        public string Remark { get; set; }
+        public string Remark { get; set; } = default!;
     }
 }

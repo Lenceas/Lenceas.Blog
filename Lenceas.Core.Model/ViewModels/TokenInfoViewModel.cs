@@ -5,16 +5,16 @@
         /// <summary>
         /// Token
         /// </summary>
-        public string token { get; set; }
+        public string Token { get; set; } = default!;
 
         /// <summary>
         /// 过期时间 单位:秒 默认15分钟
         /// </summary>
-        public int expires_in { get; set; }
+        public int Expires_In { get; set; }
 
         /// <summary>
         /// Token类型
         /// </summary>
-        public string token_type { get; set; }
+        public string Token_Type { get; set; } = default!;
     }
 }

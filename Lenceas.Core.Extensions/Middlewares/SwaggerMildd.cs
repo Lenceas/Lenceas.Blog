@@ -18,7 +18,7 @@ namespace Lenceas.Core.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                var ApiName = AppSettings.app(new string[] { "Startup", "ApiName" });
+                var ApiName = AppSettings.App(new string[] { "Startup", "ApiName" });
                 typeof(ApiVersions).GetEnumNames().OrderByDescending(e => e).ToList().ForEach(version =>
                 {
                     c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"{ApiName} {version}");
@@ -27,17 +27,17 @@ namespace Lenceas.Core.Extensions
                 c.HeadContent = @$"<script async='async' 
                     id='mini-profiler' 
                     src='/profiler/includes.min.js?v=4.2.22+4563a9e1ab' 
-                    data-version='4.2.22+4563a9e1ab' 
-                    data-path='/profiler/'
-                    data-current-id='59e91ce8-3995-4c36-8a8c-a91f552259d1' 
-                    data-ids='59e91ce8-3995-4c36-8a8c-a91f552259d1' 
-                    data-position='Left'
-                    data-scheme='Light''
-                    data-authorized='true' 
-                    data-max-traces='5' 
-                    data-toggle-shortcut='Alt+P'
-                    data-trivial-milliseconds='2.0' 
-                    data-ignored-duplicate-execute-types='Open,OpenAsync,Close,CloseAsync'>
+                    Data-version='4.2.22+4563a9e1ab' 
+                    Data-path='/profiler/'
+                    Data-current-id='59e91ce8-3995-4c36-8a8c-a91f552259d1' 
+                    Data-ids='59e91ce8-3995-4c36-8a8c-a91f552259d1' 
+                    Data-position='Left'
+                    Data-scheme='Light''
+                    Data-authorized='true' 
+                    Data-max-traces='5' 
+                    Data-toggle-shortcut='Alt+P'
+                    Data-trivial-milliseconds='2.0' 
+                    Data-ignored-duplicate-execute-types='Open,OpenAsync,Close,CloseAsync'>
                 </script>";
             });
         }

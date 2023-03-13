@@ -23,8 +23,8 @@ namespace Lenceas.Core.Extensions
             var symmetricKeyAsBase64 = AppSecretConfig.Audience_Secret_String;
             var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64);
             var signingKey = new SymmetricSecurityKey(keyByteArray);
-            var Issuer = AppSettings.app(new string[] { "Audience", "Issuer" });
-            var Audience = AppSettings.app(new string[] { "Audience", "Audience" });
+            var Issuer = AppSettings.App(new string[] { "Audience", "Issuer" });
+            var Audience = AppSettings.App(new string[] { "Audience", "Audience" });
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
             var tokenValidationParameters = new TokenValidationParameters

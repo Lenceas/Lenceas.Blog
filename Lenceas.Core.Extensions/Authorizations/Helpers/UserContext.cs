@@ -76,7 +76,7 @@ namespace Lenceas.Core.Extensions
             string tokenKey = current.Request.Headers["Authorization"];
             // b.从querystring中找
             if (string.IsNullOrEmpty(tokenKey))
-                tokenKey = current.Request.Query["token"].FirstOrDefault();
+                tokenKey = current.Request.Query["Token"].FirstOrDefault();
 
             return tokenKey.Replace("Bearer ", "");
         }

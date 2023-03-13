@@ -2,7 +2,7 @@
 {
     public class PageViewModel<T>
     {
-        public IList<T> ViewModelList { get; set; }
+        public IList<T> ViewModelList { get; set; } = default!;
 
         public int PageIndex { get; set; }
 
@@ -19,6 +19,6 @@
 
     public class PageViewModel<T1, T2> : PageViewModel<T1>
     {
-        public T2 Data { get; set; }
+        public T2 Data { get; set; } = default!;
     }
 }

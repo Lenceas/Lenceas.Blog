@@ -1,10 +1,7 @@
-﻿using Lenceas.Core.IServices;
+﻿using Lenceas.Core.Common;
+using Lenceas.Core.IServices;
 using Lenceas.Core.Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Lenceas.Core.Common;
 
 namespace Lenceas.Core.Services
 {
