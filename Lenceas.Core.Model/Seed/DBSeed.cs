@@ -1,10 +1,7 @@
 ﻿using Lenceas.Core.Common;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Lenceas.Core.Model
 {

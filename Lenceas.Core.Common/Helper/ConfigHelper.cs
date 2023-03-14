@@ -6,6 +6,17 @@
     public static class ConfigHelper
     {
         /// <summary>
+        /// JWT密钥
+        /// </summary>
+        public static string JwtSecretString
+        {
+            get
+            {
+                return DifDBConnOfSecurity(@"./jwt_Secret.txt", @"F:\my-file\jwt_Secret.txt", @"D:\my-file\jwt_Secret.txt", @"C:\my-file\jwt_Secret.txt"); ;
+            }
+        }
+
+        /// <summary>
         /// MySql连接字符串
         /// </summary>
         public static string MySqlConnectionString

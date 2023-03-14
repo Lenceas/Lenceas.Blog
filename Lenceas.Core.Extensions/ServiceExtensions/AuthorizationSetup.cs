@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Lenceas.Core.Extensions
 {
@@ -20,7 +18,7 @@ namespace Lenceas.Core.Extensions
             #region 参数
 
             //读取配置文件
-            var symmetricKeyAsBase64 = AppSecretConfig.Audience_Secret_String;
+            var symmetricKeyAsBase64 = ConfigHelper.JwtSecretString;
             var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64);
             var signingKey = new SymmetricSecurityKey(keyByteArray);
             var Issuer = AppSettings.App(new string[] { "Audience", "Issuer" });

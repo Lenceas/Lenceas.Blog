@@ -1,7 +1,6 @@
 ﻿using Lenceas.Core.Common;
 using Lenceas.Core.Model;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -21,7 +20,7 @@ namespace Lenceas.Core.Extensions
         public static TokenInfoViewModel BuildJwtToken(Claim[] claims)
         {
             //读取配置文件
-            var symmetricKeyAsBase64 = AppSecretConfig.Audience_Secret_String;
+            var symmetricKeyAsBase64 = ConfigHelper.JwtSecretString;
             var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64);
             var signingKey = new SymmetricSecurityKey(keyByteArray);
             var Issuer = AppSettings.App(new string[] { "Audience", "Issuer" });

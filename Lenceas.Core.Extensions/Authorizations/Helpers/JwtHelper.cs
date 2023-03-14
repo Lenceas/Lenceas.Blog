@@ -40,7 +40,7 @@ namespace Lenceas.Core.Extensions
         public static bool CustomSafeVerify(string token)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
-            var symmetricKeyAsBase64 = AppSecretConfig.Audience_Secret_String;
+            var symmetricKeyAsBase64 = ConfigHelper.JwtSecretString;
             var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64);
             var signingKey = new SymmetricSecurityKey(keyByteArray);
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);

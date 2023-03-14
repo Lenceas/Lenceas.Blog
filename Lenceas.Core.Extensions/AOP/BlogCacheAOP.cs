@@ -1,6 +1,5 @@
-﻿using Lenceas.Core.Common;
-using Castle.DynamicProxy;
-using System.Linq;
+﻿using Castle.DynamicProxy;
+using Lenceas.Core.Common;
 
 namespace Lenceas.Core.Extensions
 {

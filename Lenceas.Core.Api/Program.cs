@@ -79,7 +79,7 @@ app.UseSwaggerMildd();
 // CORS跨域
 app.UseCors(AppSettings.App(new string[] { "Startup", "Cors", "PolicyName" }));
 // 跳转https
-//App.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 // 使用静态文件
 app.UseStaticFiles();
 // 路由
@@ -91,13 +91,8 @@ app.UseAuthorization();
 // 性能分析
 app.UseMiniProfiler();
 // 终结点
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+app.MapControllers();
 // 生成种子数据
 app.UseSeedDataMildd(new MySqlContext(new DbContextOptionsBuilder<MySqlContext>().Options), builder.Environment.WebRootPath);
-
-app.MapControllers();
 app.Run();
 #endregion

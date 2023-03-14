@@ -1,10 +1,5 @@
 ﻿using Lenceas.Core.Common;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lenceas.Core.Extensions
 {
@@ -25,7 +20,6 @@ namespace Lenceas.Core.Extensions
 
                         policy =>
                         {
-
                             policy
                             .WithOrigins(AppSettings.App(new string[] { "Startup", "Cors", "IPs" }).Split(','))
                             .AllowAnyHeader()//Ensures that the policy allows any header.
