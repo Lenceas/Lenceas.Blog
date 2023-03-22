@@ -41,23 +41,22 @@ namespace Lenceas.Core.Api.Controllers
         /// <summary>
         /// 登录
         /// </summary>
-        /// <param name="name">账号</param>
-        /// <param name="pwd">密码</param>
+        /// <param name="model">登录入参 WebModel</param>
         /// <returns></returns>
         [HttpPost]
         [Route("Login")]
-        public async Task<ApiResult<TokenInfoViewModel>> Login(string name = "", string pwd = "")
+        public async Task<ApiResult<TokenInfoViewModel>> Login(LoginWebModel model)
         {
             var r = new ApiResult<TokenInfoViewModel>();
             try
             {
-                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pwd))
+                if (string.IsNullOrEmpty(model.UserName) || string.IsNullOrEmpty(model.Password))
                 {
-                    r.Status = 400;
-                    r.Msg = "账号或密码不能为空！";
+                    r.status = 400;
+                    r.msg = "账号或密码不能为空！";
                     return r;
                 }
-                var user = await _userServices.GetEntity(t => t.UserName.Equals(name) && t.Password.Equals(MD5Helper.MD5Encrypt32(pwd)));
+                var user = await _userServices.GetEntity(t => t.UserName.Equals(model.UserName) && t.Password.Equals(MD5Helper.MD5Encrypt32(model.Password)));
                 if (user != null)
                 {
                     var userRole = await _roleServices.GetList(_ => _.UserID == user.Id);
@@ -76,22 +75,22 @@ namespace Lenceas.Core.Api.Controllers
                     var responseJson = JwtToken.BuildJwtToken(claims);
                     if (responseJson != null)
                     {
-                        r.Status = 200;
-                        r.Msg = "登录成功！";
-                        r.Data = responseJson;
+                        r.status = 200;
+                        r.msg = "登录成功！";
+                        r.data = responseJson;
                         new AuthHelper(_accessor, _redis).SaveCurrSessionAndUserRole(responseJson, new AuthModel() { UserID = user?.Id ?? 0, UserName = user?.UserName ?? string.Empty, RoleIDs = userRole?.Select(_ => _.Id).Distinct().ToList() ?? new List<int>() });
                     }
                 }
                 else
                 {
-                    r.Status = 401;
-                    r.Msg = "账号或密码错误！";
+                    r.status = 401;
+                    r.msg = "账号或密码错误！";
                 }
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -99,8 +98,8 @@ namespace Lenceas.Core.Api.Controllers
         /// <summary>
         /// 注册
         /// </summary>
-        /// <param name="name">账号</param>
-        /// <param name="pwd">密码</param>
+        /// <param UserName="name">账号</param>
+        /// <param UserName="Password">密码</param>
         /// <returns></returns>
         [HttpPost]
         [Route("Register")]
@@ -111,32 +110,32 @@ namespace Lenceas.Core.Api.Controllers
             {
                 if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pwd))
                 {
-                    r.Status = 400;
-                    r.Msg = "账号或密码不能为空！";
+                    r.status = 400;
+                    r.msg = "账号或密码不能为空！";
                     return r;
                 }
                 var isExist = await _userServices.ExistName(name);
                 if (isExist)
                 {
-                    r.Status = 400;
-                    r.Msg = "账号已存在！";
+                    r.status = 400;
+                    r.msg = "账号已存在！";
                     return r;
                 }
                 var user = await _userServices.Register(name, pwd);
                 if (user == null)
                 {
-                    r.Status = 400;
-                    r.Msg = "注册失败！";
+                    r.status = 400;
+                    r.msg = "注册失败！";
                     return r;
                 }
-                r.Status = 200;
-                r.Msg = "注册成功！";
-                r.Data = user;
+                r.status = 200;
+                r.msg = "注册成功！";
+                r.data = user;
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -144,7 +143,7 @@ namespace Lenceas.Core.Api.Controllers
         /// <summary>
         /// 请求刷新Token
         /// </summary>
-        /// <param name="token"></param>
+        /// <param UserName="token"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("RefreshToken")]
@@ -155,8 +154,8 @@ namespace Lenceas.Core.Api.Controllers
             {
                 if (string.IsNullOrEmpty(token))
                 {
-                    r.Status = 400;
-                    r.Msg = "token无效，请重新登录！";
+                    r.status = 400;
+                    r.msg = "token无效，请重新登录！";
                     return r;
                 }
                 var tokenModel = JwtHelper.SerializeToken(token);
@@ -181,22 +180,22 @@ namespace Lenceas.Core.Api.Controllers
                         var responseJson = JwtToken.BuildJwtToken(claims);
                         if (responseJson != null)
                         {
-                            r.Status = 200;
-                            r.Msg = "刷新Token成功！";
-                            r.Data = responseJson;
+                            r.status = 200;
+                            r.msg = "刷新Token成功！";
+                            r.data = responseJson;
                             new AuthHelper(_accessor, _redis).SaveCurrSessionAndUserRole(responseJson, new AuthModel() { UserID = user?.Id ?? 0, UserName = user?.UserName ?? string.Empty, RoleIDs = userRole?.Select(_ => _.Id).Distinct().ToList() ?? new List<int>() });
                             return r;
                         }
                     }
                 }
-                r.Status = 400;
-                r.Msg = "刷新token失败请重新登录！";
+                r.status = 400;
+                r.msg = "刷新token失败请重新登录！";
                 return r;
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -204,7 +203,7 @@ namespace Lenceas.Core.Api.Controllers
         /// <summary>
         /// 退出登录
         /// </summary>
-        /// <param name="token"></param>
+        /// <param UserName="token"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("Logout")]
@@ -224,13 +223,13 @@ namespace Lenceas.Core.Api.Controllers
                         }
                     }
                 }
-                r.Msg = "退出登录成功";
+                r.msg = "退出登录成功";
                 return r;
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }

@@ -9,34 +9,33 @@
             权限相关接口
             </summary>
         </member>
-        <member name="M:Lenceas.Core.Api.Controllers.AuthController.Login(System.String,System.String)">
+        <member name="M:Lenceas.Core.Api.Controllers.AuthController.Login(Lenceas.Core.Model.LoginWebModel)">
             <summary>
             登录
             </summary>
-            <param name="name">账号</param>
-            <param name="pwd">密码</param>
+            <param name="model">登录入参 WebModel</param>
             <returns></returns>
         </member>
         <member name="M:Lenceas.Core.Api.Controllers.AuthController.Register(System.String,System.String)">
             <summary>
             注册
             </summary>
-            <param name="name">账号</param>
-            <param name="pwd">密码</param>
+            <param UserName="name">账号</param>
+            <param UserName="Password">密码</param>
             <returns></returns>
         </member>
         <member name="M:Lenceas.Core.Api.Controllers.AuthController.RefreshToken(System.String)">
             <summary>
             请求刷新Token
             </summary>
-            <param name="token"></param>
+            <param UserName="token"></param>
             <returns></returns>
         </member>
         <member name="M:Lenceas.Core.Api.Controllers.AuthController.Logout(System.String)">
             <summary>
             退出登录
             </summary>
-            <param name="token"></param>
+            <param UserName="token"></param>
             <returns></returns>
         </member>
         <member name="T:Lenceas.Core.Api.Controllers.BlogArticleController">

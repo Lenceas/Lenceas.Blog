@@ -53,13 +53,13 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<PageViewModel<BlogArticleWebModel>>();
             try
             {
-                r.Msg = "查询成功";
-                r.Data = _mapper.Map<List<BlogArticleWebModel>>(await _blogArticleServices.GetPage(pageIndex, pageSize)).AsPageViewModel(pageIndex, pageSize);
+                r.msg = "查询成功";
+                r.data = _mapper.Map<List<BlogArticleWebModel>>(await _blogArticleServices.GetPage(pageIndex, pageSize)).AsPageViewModel(pageIndex, pageSize);
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -75,13 +75,13 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<List<BlogArticleWebModel>>();
             try
             {
-                r.Msg = "查询成功";
-                r.Data = _mapper.Map<List<BlogArticleWebModel>>(await _blogArticleServices.GetList());
+                r.msg = "查询成功";
+                r.data = _mapper.Map<List<BlogArticleWebModel>>(await _blogArticleServices.GetList());
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -101,19 +101,19 @@ namespace Lenceas.Core.Api.Controllers
                 var entity = await _blogArticleServices.GetById(id);
                 if (entity != null)
                 {
-                    r.Msg = "查询成功";
-                    r.Data = _mapper.Map<BlogArticleWebModel>(entity);
+                    r.msg = "查询成功";
+                    r.data = _mapper.Map<BlogArticleWebModel>(entity);
                 }
                 else
                 {
-                    r.Status = 404;
-                    r.Msg = "未匹配到数据";
+                    r.status = 404;
+                    r.msg = "未匹配到数据";
                 }
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -129,13 +129,13 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             try
             {
-                r.Status = await _blogArticleServices.AddAsync(new BlogArticle() { }) > 0 ? 200 : 400;
-                r.Msg = r.Status == 200 ? "添加成功" : "添加失败";
+                r.status = await _blogArticleServices.AddAsync(new BlogArticle() { }) > 0 ? 200 : 400;
+                r.msg = r.status == 200 ? "添加成功" : "添加失败";
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -152,26 +152,26 @@ namespace Lenceas.Core.Api.Controllers
             var r = new ApiResult<string>();
             if (!id.Equals(model.Id))
             {
-                r.Status = 400;
-                r.Msg = "传入Id与实体Id不一致";
+                r.status = 400;
+                r.msg = "传入Id与实体Id不一致";
                 return r;
             }
             var isExist = await _blogArticleServices.IsExist(id);
             if (!isExist)
             {
-                r.Status = 404;
-                r.Msg = "未匹配到数据";
+                r.status = 404;
+                r.msg = "未匹配到数据";
                 return r;
             }
             try
             {
-                r.Status = await _blogArticleServices.UpdateAsync(t => t.Id == id, t => new BlogArticle() { MDate = DateTime.Now.ToLocalTime() }) == 0 ? 200 : 400;
-                r.Msg = r.Status == 200 ? "更新成功" : "更新失败";
+                r.status = await _blogArticleServices.UpdateAsync(t => t.Id == id, t => new BlogArticle() { MDate = DateTime.Now.ToLocalTime() }) == 0 ? 200 : 400;
+                r.msg = r.status == 200 ? "更新成功" : "更新失败";
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }
@@ -190,19 +190,19 @@ namespace Lenceas.Core.Api.Controllers
                 var isExist = await _blogArticleServices.IsExist(id);
                 if (isExist)
                 {
-                    r.Status = await _blogArticleServices.DeleteById(id) > 0 ? 200 : 400;
-                    r.Msg = r.Status == 200 ? "删除成功" : "删除失败";
+                    r.status = await _blogArticleServices.DeleteById(id) > 0 ? 200 : 400;
+                    r.msg = r.status == 200 ? "删除成功" : "删除失败";
                 }
                 else
                 {
-                    r.Status = 400;
-                    r.Msg = "未匹配到数据";
+                    r.status = 400;
+                    r.msg = "未匹配到数据";
                 }
             }
             catch (Exception ex)
             {
-                r.Status = 500;
-                r.Msg = ex.Message;
+                r.status = 500;
+                r.msg = ex.Message;
             }
             return r;
         }

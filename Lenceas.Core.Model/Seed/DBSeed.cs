@@ -7,7 +7,7 @@ namespace Lenceas.Core.Model
 {
     public class DBSeed
     {
-        private static string SeedDataFolder = "/Lenceas.Core.Data.json/{0}.tsv";
+        private static string SeedDataFolder = "/Lenceas.Core.data.json/{0}.tsv";
 
         /// <summary>
         /// 异步添加种子数据 EF Core
