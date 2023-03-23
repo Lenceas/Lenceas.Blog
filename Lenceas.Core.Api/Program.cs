@@ -1,11 +1,11 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Lenceas.Core.Api;
 using Lenceas.Core.Common;
 using Lenceas.Core.Extensions;
 using Lenceas.Core.Model;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
@@ -49,13 +49,15 @@ builder.Services.AddAuthorizationSetup();
 builder.Services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
-                    //忽略循环引用
+                    // 忽略循环引用
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    //不使用驼峰样式的key
-                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                    //设置时间格式
+                    // 不使用驼峰样式的key
+                    //options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    // 全部小写
+                    options.SerializerSettings.ContractResolver = new LowerCasePropertyNameContractResolver();
+                    // 设置时间格式
                     options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                    //忽略Model中为null的属性
+                    // 忽略Model中为null的属性
                     //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
 #endregion

@@ -9,42 +9,42 @@
             Api通用返回信息类
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.status">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Status">
             <summary>
             状态码
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.success">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Success">
             <summary>
             是否成功
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.msg">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Msg">
             <summary>
             返回信息
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult`1.data">
+        <member name="P:Lenceas.Core.Model.ApiResult`1.Data">
             <summary>
             响应数据
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.status">
+        <member name="P:Lenceas.Core.Model.ApiResult.Status">
             <summary>
             状态码
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.success">
+        <member name="P:Lenceas.Core.Model.ApiResult.Success">
             <summary>
             是否成功
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.msg">
+        <member name="P:Lenceas.Core.Model.ApiResult.Msg">
             <summary>
             返回信息
             </summary>
         </member>
-        <member name="P:Lenceas.Core.Model.ApiResult.data">
+        <member name="P:Lenceas.Core.Model.ApiResult.Data">
             <summary>
             响应数据
             </summary>
